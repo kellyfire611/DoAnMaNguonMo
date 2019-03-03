@@ -1,5 +1,15 @@
 # DoAnMaNguonMo
-Đồ án Mã nguồn mở Thầy Nghị
+Đồ án Mã nguồn mở Thầy Nghị. Lý do chọn source:
+- Đây là CMS được viết bằng Laravel, có đầy đủ các chức năng:
+    - Backend, Frontend
+    - Quản lý (Thêm, Sửa, Xóa) các Trang
+    - Quản lý Menu
+    - Quản lý Tag
+    - Phân theo từng Module hoạt động
+    - Có phần Setting tùy theo môi trường
+    - Có quản lý Người dùng, Phân quyền đầy đủ
+    - Có Quản lý luôn phần Đa phương tiện (Media, Upload, Download...)
+    - Hỗ trợ Đa ngôn ngữ (do mình làm trang Quản bá Du lịch, nên cần Đa ngôn ngữ Anh Việt, ...)
 
 # Cách chạy source
 ## Cần có các chương trình sau:
@@ -20,7 +30,14 @@ GD PHP Library
 MySql 5.5
 One of the following cache drivers: memcached, redis, apc. (defaults to array)
 
-## Clone source về
+## Download hoặc Clone source về
+### Download
+- Vào web https://github.com/kellyfire611/DoAnMaNguonMo
+- Chọn download như hình:
+
+![Download Source](doc/assets/download-source.png)
+
+### Clone source
 - Chạy câu lệnh sau để get source mới nhất từ GitHub về:
 ```
 git clone https://github.com/kellyfire611/DoAnMaNguonMo.git
