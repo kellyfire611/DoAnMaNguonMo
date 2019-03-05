@@ -44,6 +44,7 @@ return array(
     'Nwidart\\Modules\\' => array($vendorDir . '/nwidart/laravel-modules/src'),
     'Nwidart\\Menus\\' => array($vendorDir . '/nwidart/laravel-menus/src'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
+    'MongoDB\\' => array($vendorDir . '/mongodb/mongodb/src'),
     'Modules\\User\\' => array($baseDir . '/Modules/User'),
     'Modules\\Translation\\' => array($baseDir . '/Modules/Translation'),
     'Modules\\Tag\\' => array($baseDir . '/Modules/Tag'),

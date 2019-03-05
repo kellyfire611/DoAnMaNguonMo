@@ -15,6 +15,7 @@ class ComposerStaticInitcd2c68f93e7f35bc41020e6b30f544a9
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
+        '3a37ebac017bc098e9a86b35401e7a68' => __DIR__ . '/..' . '/mongodb/mongodb/src/functions.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         'b067bc7112e384b61c701452d53a14a8' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/JmesPath.php',
         '8a9dc1de0ca7e01f3e08231539562f61' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/functions.php',
@@ -100,6 +101,7 @@ class ComposerStaticInitcd2c68f93e7f35bc41020e6b30f544a9
         'M' => 
         array (
             'Monolog\\' => 8,
+            'MongoDB\\' => 8,
             'Modules\\User\\' => 13,
             'Modules\\Translation\\' => 20,
             'Modules\\Tag\\' => 12,
@@ -327,6 +329,10 @@ class ComposerStaticInitcd2c68f93e7f35bc41020e6b30f544a9
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
+        'MongoDB\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mongodb/mongodb/src',
+        ),
         'Modules\\User\\' => 
         array (
             0 => __DIR__ . '/../..' . '/Modules/User',
@@ -525,6 +531,13 @@ class ComposerStaticInitcd2c68f93e7f35bc41020e6b30f544a9
             'Laracasts\\Presenter' => 
             array (
                 0 => __DIR__ . '/..' . '/laracasts/presenter/src',
+            ),
+        ),
+        'J' => 
+        array (
+            'Jenssegers\\Mongodb' => 
+            array (
+                0 => __DIR__ . '/..' . '/jenssegers/mongodb/src',
             ),
         ),
         'D' => 
