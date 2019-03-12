@@ -2,13 +2,13 @@
 
 namespace App\Models\System;
 
-use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 /**
  * Class Session
  * package App.
  */
-class Session extends Model
+class Session extends Eloquent
 {
     /**
      * The database table used by the model.

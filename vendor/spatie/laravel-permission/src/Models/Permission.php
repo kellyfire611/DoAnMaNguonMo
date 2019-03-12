@@ -6,6 +6,7 @@ use Spatie\Permission\Guard;
 use Illuminate\Support\Collection;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 use Spatie\Permission\PermissionRegistrar;
 use Spatie\Permission\Traits\RefreshesPermissionCache;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
@@ -14,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\Permission\Exceptions\PermissionAlreadyExists;
 use Spatie\Permission\Contracts\Permission as PermissionContract;
 
-class Permission extends Model implements PermissionContract
+class Permission extends Eloquent implements PermissionContract
 {
     use HasRoles;
     use RefreshesPermissionCache;

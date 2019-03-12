@@ -4,6 +4,7 @@ namespace Spatie\Permission\Models;
 
 use Spatie\Permission\Guard;
 use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Exceptions\RoleDoesNotExist;
 use Spatie\Permission\Exceptions\GuardDoesNotMatch;
@@ -13,7 +14,7 @@ use Spatie\Permission\Traits\RefreshesPermissionCache;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Role extends Model implements RoleContract
+class Role extends Eloquent implements RoleContract
 {
     use HasPermissions;
     use RefreshesPermissionCache;

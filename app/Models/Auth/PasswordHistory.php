@@ -2,12 +2,12 @@
 
 namespace App\Models\Auth;
 
-use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 /**
  * Class PasswordHistory.
  */
-class PasswordHistory extends Model
+class PasswordHistory extends Eloquent
 {
     /**
      * The database table used by the model.

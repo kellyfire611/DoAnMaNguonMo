@@ -188,6 +188,7 @@ return [
         App\Providers\ObserverServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        Jenssegers\Mongodb\MongodbServiceProvider::class,
     ],
 
     /*
