@@ -3,8 +3,8 @@
 namespace Jenssegers\Mongodb\Relations;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
 use MongoDB\BSON\ObjectID;
+use Illuminate\Database\Eloquent\Model as EloquentModel;
 
 class EmbedsOne extends EmbedsOneOrMany
 {
@@ -71,8 +71,7 @@ class EmbedsOne extends EmbedsOneOrMany
             return $this->parent->save();
         }
 
-        // Use array dot notation for better update behavior.
-        $values = Arr::dot($model->getDirty(), $this->localKey . '.');
+        $values = $this->getUpdateValues($model->getDirty(), $this->localKey . '.');
 
         $result = $this->getBaseQuery()->update($values);
 
@@ -137,5 +136,17 @@ class EmbedsOne extends EmbedsOneOrMany
     public function delete()
     {
         return $this->performDelete();
+    }
+
+    /**
+     * Get the name of the "where in" method for eager loading.
+     *
+     * @param  \Illuminate\Database\Eloquent\Model  $model
+     * @param  string  $key
+     * @return string
+     */
+    protected function whereInMethod(EloquentModel $model, $key)
+    {
+        return 'whereIn';
     }
 }

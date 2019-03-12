@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Arr;
 use MongoDB\BSON\ObjectID;
+use Illuminate\Database\Eloquent\Model as EloquentModel;
 
 class EmbedsMany extends EmbedsOneOrMany
 {
@@ -79,8 +79,7 @@ class EmbedsMany extends EmbedsOneOrMany
         // Get the correct foreign key value.
         $foreignKey = $this->getForeignKeyValue($model);
 
-        // Use array dot notation for better update behavior.
-        $values = Arr::dot($model->getDirty(), $this->localKey . '.$.');
+        $values = $this->getUpdateValues($model->getDirty(), $this->localKey . '.$.');
 
         // Update document in database.
         $result = $this->getBaseQuery()->where($this->localKey . '.' . $model->getKeyName(), $foreignKey)
@@ -329,5 +328,17 @@ class EmbedsMany extends EmbedsOneOrMany
         }
 
         return parent::__call($method, $parameters);
+    }
+
+    /**
+     * Get the name of the "where in" method for eager loading.
+     *
+     * @param  \Illuminate\Database\Eloquent\Model  $model
+     * @param  string  $key
+     * @return string
+     */
+    protected function whereInMethod(EloquentModel $model, $key)
+    {
+        return 'whereIn';
     }
 }

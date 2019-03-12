@@ -12,12 +12,12 @@
 namespace Symfony\Component\Debug\Tests;
 
 use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;
 use Symfony\Component\Debug\BufferingLogger;
 use Symfony\Component\Debug\ErrorHandler;
 use Symfony\Component\Debug\Exception\SilencedErrorContext;
-use Symfony\Component\Debug\Tests\Fixtures\ErrorHandlerThatUsesThePreviousOne;
 use Symfony\Component\Debug\Tests\Fixtures\LoggerThatSetAnErrorHandler;
 
 /**
@@ -328,9 +328,6 @@ class ErrorHandlerTest extends TestCase
         restore_error_handler();
     }
 
-    /**
-     * @group no-hhvm
-     */
     public function testHandleException()
     {
         try {
@@ -366,38 +363,6 @@ class ErrorHandlerTest extends TestCase
             });
 
             $handler->handleException($exception);
-        } finally {
-            restore_error_handler();
-            restore_exception_handler();
-        }
-    }
-
-    /**
-     * @group legacy
-     */
-    public function testErrorStacking()
-    {
-        try {
-            $handler = ErrorHandler::register();
-            $handler->screamAt(E_USER_WARNING);
-
-            $logger = $this->getMockBuilder('Psr\Log\LoggerInterface')->getMock();
-
-            $logger
-                ->expects($this->exactly(2))
-                ->method('log')
-                ->withConsecutive(
-                    [$this->equalTo(LogLevel::WARNING), $this->equalTo('Dummy log')],
-                    [$this->equalTo(LogLevel::DEBUG), $this->equalTo('User Warning: Silenced warning')]
-                )
-            ;
-
-            $handler->setDefaultLogger($logger, [E_USER_WARNING => LogLevel::WARNING]);
-
-            ErrorHandler::stackErrors();
-            @trigger_error('Silenced warning', E_USER_WARNING);
-            $logger->log(LogLevel::WARNING, 'Dummy log');
-            ErrorHandler::unstackErrors();
         } finally {
             restore_error_handler();
             restore_exception_handler();
@@ -455,9 +420,6 @@ class ErrorHandlerTest extends TestCase
         $handler->setLoggers([E_DEPRECATED => [$mockLogger, LogLevel::WARNING]]);
     }
 
-    /**
-     * @group no-hhvm
-     */
     public function testSettingLoggerWhenExceptionIsBuffered()
     {
         $bootLogger = new BufferingLogger();
@@ -477,9 +439,6 @@ class ErrorHandlerTest extends TestCase
         $handler->handleException($exception);
     }
 
-    /**
-     * @group no-hhvm
-     */
     public function testHandleFatalError()
     {
         try {
@@ -520,9 +479,6 @@ class ErrorHandlerTest extends TestCase
         }
     }
 
-    /**
-     * @requires PHP 7
-     */
     public function testHandleErrorException()
     {
         $exception = new \Error("Class 'Foo' not found");
@@ -539,45 +495,7 @@ class ErrorHandlerTest extends TestCase
     }
 
     /**
-     * @group no-hhvm
-     */
-    public function testHandleFatalErrorOnHHVM()
-    {
-        try {
-            $handler = ErrorHandler::register();
-
-            $logger = $this->getMockBuilder('Psr\Log\LoggerInterface')->getMock();
-            $logger
-                ->expects($this->once())
-                ->method('log')
-                ->with(
-                    $this->equalTo(LogLevel::CRITICAL),
-                    $this->equalTo('Fatal Error: foo')
-                )
-            ;
-
-            $handler->setDefaultLogger($logger, E_ERROR);
-
-            $error = [
-                'type' => E_ERROR + 0x1000000, // This error level is used by HHVM for fatal errors
-                'message' => 'foo',
-                'file' => 'bar',
-                'line' => 123,
-                'context' => [123],
-                'backtrace' => [456],
-            ];
-
-            \call_user_func_array([$handler, 'handleError'], $error);
-            $handler->handleFatalError($error);
-        } finally {
-            restore_error_handler();
-            restore_exception_handler();
-        }
-    }
-
-    /**
      * @expectedException \Exception
-     * @group no-hhvm
      */
     public function testCustomExceptionHandler()
     {
@@ -590,40 +508,26 @@ class ErrorHandlerTest extends TestCase
     }
 
     /**
-     * @dataProvider errorHandlerWhenLoggingProvider
+     * @dataProvider errorHandlerIsNotLostWhenLoggingProvider
      */
-    public function testErrorHandlerWhenLogging($previousHandlerWasDefined, $loggerSetsAnotherHandler, $nextHandlerIsDefined)
+    public function testErrorHandlerIsNotLostWhenLogging($customErrorHandlerHasBeenPreviouslyDefined, LoggerInterface $logger)
     {
         try {
-            if ($previousHandlerWasDefined) {
+            if ($customErrorHandlerHasBeenPreviouslyDefined) {
                 set_error_handler('count');
             }
 
-            $logger = $loggerSetsAnotherHandler ? new LoggerThatSetAnErrorHandler() : new NullLogger();
-
             $handler = ErrorHandler::register();
             $handler->setDefaultLogger($logger);
-
-            if ($nextHandlerIsDefined) {
-                $handler = ErrorHandlerThatUsesThePreviousOne::register();
-            }
 
             @trigger_error('foo', E_USER_DEPRECATED);
             @trigger_error('bar', E_USER_DEPRECATED);
 
             $this->assertSame([$handler, 'handleError'], set_error_handler('var_dump'));
 
-            if ($logger instanceof LoggerThatSetAnErrorHandler) {
-                $this->assertCount(2, $logger->cleanLogs());
-            }
-
             restore_error_handler();
 
-            if ($previousHandlerWasDefined) {
-                restore_error_handler();
-            }
-
-            if ($nextHandlerIsDefined) {
+            if ($customErrorHandlerHasBeenPreviouslyDefined) {
                 restore_error_handler();
             }
         } finally {
@@ -632,14 +536,13 @@ class ErrorHandlerTest extends TestCase
         }
     }
 
-    public function errorHandlerWhenLoggingProvider()
+    public function errorHandlerIsNotLostWhenLoggingProvider()
     {
-        foreach ([false, true] as $previousHandlerWasDefined) {
-            foreach ([false, true] as $loggerSetsAnotherHandler) {
-                foreach ([false, true] as $nextHandlerIsDefined) {
-                    yield [$previousHandlerWasDefined, $loggerSetsAnotherHandler, $nextHandlerIsDefined];
-                }
-            }
-        }
+        return [
+            [false, new NullLogger()],
+            [true, new NullLogger()],
+            [false, new LoggerThatSetAnErrorHandler()],
+            [true, new LoggerThatSetAnErrorHandler()],
+        ];
     }
 }

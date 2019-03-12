@@ -50,11 +50,11 @@ class Route implements \Serializable
      * @param string|string[] $methods      A required HTTP method or an array of restricted methods
      * @param string          $condition    A condition that should evaluate to true for the route to match
      */
-    public function __construct($path, array $defaults = [], array $requirements = [], array $options = [], $host = '', $schemes = [], $methods = [], $condition = '')
+    public function __construct(string $path, array $defaults = [], array $requirements = [], array $options = [], ?string $host = '', $schemes = [], $methods = [], ?string $condition = '')
     {
         $this->setPath($path);
-        $this->setDefaults($defaults);
-        $this->setRequirements($requirements);
+        $this->addDefaults($defaults);
+        $this->addRequirements($requirements);
         $this->setOptions($options);
         $this->setHost($host);
         $this->setSchemes($schemes);
@@ -123,6 +123,19 @@ class Route implements \Serializable
      */
     public function setPath($pattern)
     {
+        if (false !== strpbrk($pattern, '?<')) {
+            $pattern = preg_replace_callback('#\{(\w++)(<.*?>)?(\?[^\}]*+)?\}#', function ($m) {
+                if (isset($m[3][0])) {
+                    $this->setDefault($m[1], '?' !== $m[3] ? substr($m[3], 1) : null);
+                }
+                if (isset($m[2][0])) {
+                    $this->setRequirement($m[1], substr($m[2], 1, -1));
+                }
+
+                return '{'.$m[1].'}';
+            }, $pattern);
+        }
+
         // A pattern must start with a slash and must not have multiple slashes at the beginning because the
         // generated path for this route would be confused with a network path, e.g. '//domain.com/path'.
         $this->path = '/'.ltrim(trim($pattern), '/');
@@ -314,7 +327,7 @@ class Route implements \Serializable
      */
     public function hasOption($name)
     {
-        return \array_key_exists($name, $this->options);
+        return array_key_exists($name, $this->options);
     }
 
     /**
@@ -383,7 +396,7 @@ class Route implements \Serializable
      */
     public function hasDefault($name)
     {
-        return \array_key_exists($name, $this->defaults);
+        return array_key_exists($name, $this->defaults);
     }
 
     /**
@@ -468,7 +481,7 @@ class Route implements \Serializable
      */
     public function hasRequirement($key)
     {
-        return \array_key_exists($key, $this->requirements);
+        return array_key_exists($key, $this->requirements);
     }
 
     /**

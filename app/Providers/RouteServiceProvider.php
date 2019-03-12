@@ -2,10 +2,13 @@
 
 namespace App\Providers;
 
+use App\Models\Auth\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
+/**
+ * Class RouteServiceProvider.
+ */
 class RouteServiceProvider extends ServiceProvider
 {
     /**
@@ -16,6 +19,7 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     protected $namespace = 'App\Http\Controllers';
+
     /**
      * Define your route model bindings, pattern filters, etc.
      *
@@ -23,11 +27,22 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        parent::boot();
-        $this->app->booted(function () {
-            $this->map();
+        /*
+        * Register route model bindings
+        */
+
+        /*
+         * Allow this to select all users regardless of status
+         */
+        $this->bind('user', function ($value) {
+            $user = new User;
+
+            return User::withTrashed()->where($user->getRouteKeyName(), $value)->first();
         });
+
+        parent::boot();
     }
+
     /**
      * Define the routes for the application.
      *
@@ -35,9 +50,13 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        // $this->mapWebRoutes();
-        // $this->mapApiRoutes();
+        $this->mapApiRoutes();
+
+        $this->mapWebRoutes();
+
+        //
     }
+
     /**
      * Define the "web" routes for the application.
      *
@@ -47,14 +66,11 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
-        Route::group([
-            'middleware' => ['localizationRedirect', 'web'],
-            'namespace' => $this->namespace,
-            'prefix' => LaravelLocalization::setLocale(),
-        ], function ($router) {
-            require base_path('routes/web.php');
-        });
+        Route::middleware('web')
+             ->namespace($this->namespace)
+             ->group(base_path('routes/web.php'));
     }
+
     /**
      * Define the "api" routes for the application.
      *
@@ -64,12 +80,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapApiRoutes()
     {
-        Route::group([
-            'middleware' => 'api',
-            'namespace' => $this->namespace,
-            'prefix' => 'api',
-        ], function ($router) {
-            require base_path('routes/api.php');
-        });
+        Route::prefix('api')
+             ->middleware('api')
+             ->namespace($this->namespace)
+             ->group(base_path('routes/api.php'));
     }
 }
