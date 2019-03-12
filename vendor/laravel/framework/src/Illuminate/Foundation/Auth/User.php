@@ -5,7 +5,13 @@ namespace Illuminate\Foundation\Auth;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
 //use Illuminate\Database\Eloquent\Model;
+
+
+
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+
+
+
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
