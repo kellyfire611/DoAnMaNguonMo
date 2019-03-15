@@ -43,6 +43,23 @@
                 </li>
             @endif
 
+            <!-- Menu Tỉnh Thành -->
+            <li class="divider"></li>
+
+            <li class="nav-item nav-dropdown {{ active_class(Active::checkUriPattern('admin/tinhthanh*'), 'open') }}">
+                <a class="nav-link nav-dropdown-toggle {{ active_class(Active::checkUriPattern('admin/tinhthanh*')) }}" href="#">
+                    <i class="nav-icon icon-list"></i> @lang('menus.backend.tinhthanh.main')
+                </a>
+
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link {{ active_class(Active::checkUriPattern('admin/tinhthanh')) }}" href="{{ route('admin.tinhthanh.index') }}">
+                            @lang('menus.backend.tinhthanh.management')
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
             <li class="divider"></li>
 
             <li class="nav-item nav-dropdown {{ active_class(Active::checkUriPattern('admin/log-viewer*'), 'open') }}">
