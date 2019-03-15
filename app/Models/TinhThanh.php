@@ -28,7 +28,7 @@ class TinhThanh extends Eloquent
      */
     public function getShowButtonAttribute()
     {
-        return '<a href="'.route('admin.tinhthanh.show', $this).'" data-toggle="tooltip" data-placement="top" title="'.__('buttons.general.crud.view').'" class="btn btn-info"><i class="fas fa-eye"></i></a>';
+        return '<a href="'.route('admin.tinhthanh.show', $this->_id).'" data-toggle="tooltip" data-placement="top" title="'.__('buttons.general.crud.view').'" class="btn btn-info"><i class="fas fa-eye"></i></a>';
     }
 
     /**
@@ -36,7 +36,7 @@ class TinhThanh extends Eloquent
      */
     public function getEditButtonAttribute()
     {
-        return '<a href="'.route('admin.tinhthanh.edit', $this).'" data-toggle="tooltip" data-placement="top" title="'.__('buttons.general.crud.edit').'" class="btn btn-primary"><i class="fas fa-edit"></i></a>';
+        return '<a href="'.route('admin.tinhthanh.edit', $this->_id).'" data-toggle="tooltip" data-placement="top" title="'.__('buttons.general.crud.edit').'" class="btn btn-primary"><i class="fas fa-edit"></i></a>';
     }
 
     /**
@@ -44,7 +44,7 @@ class TinhThanh extends Eloquent
      */
     public function getDeleteButtonAttribute()
     {
-        return '<a href="'.route('admin.tinhthanh.destroy', $this).'"
+        return '<a href="'.route('admin.tinhthanh.destroy', $this->_id).'"
                 data-method="delete"
                 data-trans-button-cancel="'.__('buttons.general.cancel').'"
                 data-trans-button-confirm="'.__('buttons.general.crud.delete').'"

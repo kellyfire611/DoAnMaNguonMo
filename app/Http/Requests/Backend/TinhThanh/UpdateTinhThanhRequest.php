@@ -28,7 +28,7 @@ class UpdateTinhThanhRequest extends FormRequest
     public function rules()
     {
         return [
-            'tentinhthanh' => ['required', 'email', 'max:191'],
+            'tentinhthanh' => ['required', 'max:191'],
         ];
     }
 }

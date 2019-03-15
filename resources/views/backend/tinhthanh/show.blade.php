@@ -25,7 +25,6 @@
                     <tr>
                         <th>@lang('labels.backend.tinhthanh.tentinhthanh')</th>
                         <td>{{ $tinhthanh->tentinhthanh }}</td>
-                        {{dd($tinhthanh)}}
                     </tr>
                 </table>
             </div>

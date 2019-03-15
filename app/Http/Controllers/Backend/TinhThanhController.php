@@ -73,9 +73,9 @@ class TinhThanhController extends Controller
      *
      * @return mixed
      */
-    public function show(ManageTinhThanhRequest $request, TinhThanh $TinhThanh)
+    public function show(ManageTinhThanhRequest $request, $_id)
     {
-        dd($TinhThanh);
+        $TinhThanh = TinhThanh::find($_id);
         return view('backend.tinhthanh.show')
             ->with('tinhthanh', $TinhThanh);
     }
@@ -88,14 +88,11 @@ class TinhThanhController extends Controller
      *
      * @return mixed
      */
-    public function edit(ManageTinhThanhRequest $request, RoleRepository $roleRepository, PermissionRepository $permissionRepository, TinhThanh $TinhThanh)
+    public function edit(ManageTinhThanhRequest $request, $_id)
     {
+        $TinhThanh = TinhThanh::find($_id);
         return view('backend.tinhthanh.edit')
-            ->withTinhThanh($TinhThanh)
-            ->withRoles($roleRepository->get())
-            ->withTinhThanhRoles($TinhThanh->roles->pluck('name')->all())
-            ->withPermissions($permissionRepository->get(['id', 'name']))
-            ->withTinhThanhPermissions($TinhThanh->permissions->pluck('name')->all());
+            ->with('tinhthanh', $TinhThanh);
     }
 
     /**
@@ -106,8 +103,9 @@ class TinhThanhController extends Controller
      * @throws \App\Exceptions\GeneralException
      * @throws \Throwable
      */
-    public function update(UpdateTinhThanhRequest $request, TinhThanh $TinhThanh)
+    public function update(UpdateTinhThanhRequest $request, $_id)
     {
+        $TinhThanh = TinhThanh::find($_id);
         $this->TinhThanhRepository->update($TinhThanh, $request->only(
             'tentinhthanh'
         ));
@@ -122,12 +120,10 @@ class TinhThanhController extends Controller
      * @return mixed
      * @throws \Exception
      */
-    public function destroy(ManageTinhThanhRequest $request, TinhThanh $TinhThanh)
+    public function destroy(ManageTinhThanhRequest $request, $_id)
     {
-        $this->TinhThanhRepository->deleteById($TinhThanh->id);
+        $this->TinhThanhRepository->deleteById($_id);
 
-        event(new TinhThanhDeleted($TinhThanh));
-
-        return redirect()->route('admin.tinhthanh.deleted')->withFlashSuccess(__('alerts.backend.tinhthanh.deleted'));
+        return redirect()->route('admin.tinhthanh.index')->withFlashSuccess(__('alerts.backend.tinhthanh.deleted'));
     }
 }
