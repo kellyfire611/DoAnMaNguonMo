@@ -27,12 +27,16 @@
                             {{ html()->label(__('validation.attributes.backend.tinhthanh.tentinhthanh'))->class('col-md-2 form-control-label')->for('tentinhthanh') }}
 
                             <div class="col-md-10">
-                                {{ html()->text('tentinhthanh')
+                                {{ html()->textarea('tentinhthanh')
                                     ->class('form-control')
                                     ->placeholder(__('validation.attributes.backend.tinhthanh.tentinhthanh'))
                                     ->attribute('maxlength', 191)
                                     ->required()
                                     ->autofocus() }}
+
+                                    <div id="editor-container" class="quill-editor">
+                                        <p>A robot who has developed sentience, and is the only robot of his kind shown to be still functioning on Earth.</p>
+                                    </div>
                             </div><!--col-->
                         </div><!--form-group-->
                     </div><!--col-->
@@ -52,4 +56,7 @@
             </div><!--card-footer-->
         </div><!--card-->
     {{ html()->form()->close() }}
+
+
+    
 @endsection

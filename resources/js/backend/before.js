@@ -7,4 +7,18 @@
 // Loaded before CoreUI app.js
 import '../bootstrap';
 import 'pace';
+//import '@ckeditor/ckeditor5-build-classic/build/ckeditor.js';
+//import '@ckeditor/ckeditor5-build-classic';
+// Core - these two are required :-)
+// import 'tinymce/tinymce';
+// import 'tinymce/themes/silver/theme';
+
+// // Plugins
+// import 'tinymce/plugins/paste/plugin';
+// import 'tinymce/plugins/link/plugin';
+// import 'tinymce/plugins/autoresize/plugin';
+
+import Quill from 'quill';
+window.Quill = Quill;
+
 import '../plugins';
