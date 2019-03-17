@@ -38,6 +38,15 @@
                                         <p>A robot who has developed sentience, and is the only robot of his kind shown to be still functioning on Earth.</p>
                                     </div>
                             </div><!--col-->
+                            
+                            <div class="col-md-10">
+                                {{ html()->textarea('tentinhthanh')
+                                    ->class('form-control')
+                                    ->placeholder(__('validation.attributes.backend.tinhthanh.tentinhthanh'))
+                                    ->attribute('maxlength', 191)
+                                    ->required()
+                                    ->autofocus() }}
+                            </div><!--col-->
                         </div><!--form-group-->
                     </div><!--col-->
                 </div><!--row-->

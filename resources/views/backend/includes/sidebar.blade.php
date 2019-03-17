@@ -9,7 +9,11 @@
                     <i class="nav-icon icon-speedometer"></i> @lang('menus.backend.sidebar.dashboard')
                 </a>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link {{ active_class(Active::checkUriPattern('admin/dashboard')) }}" href="{{ route('admin.timkiem') }}">
+                    <i class="nav-icon icon-speedometer"></i> Tìm Kiếm thông tin
+                </a>
+            </li>
             <li class="nav-title">
                 @lang('menus.backend.sidebar.system')
             </li>
@@ -55,6 +59,23 @@
                     <li class="nav-item">
                         <a class="nav-link {{ active_class(Active::checkUriPattern('admin/tinhthanh')) }}" href="{{ route('admin.tinhthanh.index') }}">
                             @lang('menus.backend.tinhthanh.management')
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            
+            <!-- Menu Địa điểm -->
+            <li class="divider"></li>
+
+            <li class="nav-item nav-dropdown {{ active_class(Active::checkUriPattern('admin/diadiem*'), 'open') }}">
+                <a class="nav-link nav-dropdown-toggle {{ active_class(Active::checkUriPattern('admin/diadiem*')) }}" href="#">
+                    <i class="nav-icon icon-list"></i> @lang('menus.backend.diadiem.main')
+                </a>
+
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link {{ active_class(Active::checkUriPattern('admin/diadiem')) }}" href="{{ route('admin.diadiem.index') }}">
+                            Quản lý địa điểm
                         </a>
                     </li>
                 </ul>
