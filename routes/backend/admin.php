@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\TinhThanhController;
+use App\Http\Controllers\Backend\TimKiemController;
 
 /*
  * All route names are prefixed with 'admin.'.
@@ -17,4 +18,6 @@ Route::get('tinhthanh/{tinhthanh}/', [TinhThanhController::class, 'show'])->name
 Route::get('tinhthanh/{tinhthanh}/edit', [TinhThanhController::class, 'edit'])->name('tinhthanh.edit');
 Route::patch('tinhthanh/{tinhthanh}/', [TinhThanhController::class, 'update'])->name('tinhthanh.update');
 Route::delete('tinhthanh/{tinhthanh}/', [TinhThanhController::class, 'destroy'])->name('tinhthanh.destroy');
+
+Route::get('timkiem', [TimKiemController::class, 'index'])->name('timkiem');
 
