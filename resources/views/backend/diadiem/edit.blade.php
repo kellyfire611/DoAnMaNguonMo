@@ -143,6 +143,90 @@
                         </div><!--form-group-->
                 </div><!--col-->
             </div><!--row-->
+
+            
+            <div class="row">
+                    <div class="col-sm-5">
+                        <h5 class="card-title mb-0">
+                            Chi tiết Dịch vụ
+                        </h5>
+                    </div><!--col-->
+                </div><!--row-->
+
+                <hr>
+
+                <div class="row mt-4 mb-4">
+                    <div class="col">
+                        <div class="table-responsive">  
+                            @if($diadiem->dichvus->count() <= 0)
+                            <table class="table table-bordered" id="dynamic_field">
+                                <tr>
+                                    <td>
+                                        <table class="table table-bordered">
+                                            <tr>  
+                                                <td><input type="text" name="dichvu_anhdaidien[]" placeholder="Ảnh đại diện" class="form-control" /></td>  
+                                                <td><input type="text" name="dichvu_tendichvu[]" placeholder="Tên dịch vụ" class="form-control" /></td>  
+                                                <td><input type="text" name="dichvu_motangan[]" placeholder="Mô tả ngắn" class="form-control" /></td>  
+                                                <td><input type="text" name="dichvu_gia[]" placeholder="Giá" class="form-control" /></td>  
+                                                <td><button type="button" name="add" id="add" class="btn btn-success">+</button></td>  
+                                            </tr>
+                                            <tr>
+                                                <td colspan="5"><input type="text" name="dichvu_gioithieu[]" placeholder="Giới thiệu" class="form-control" /></td>  
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            @else
+                            <table class="table table-bordered" id="dynamic_field">
+                                <?php
+                                $i = 1;
+                                ?>
+                                @foreach($diadiem->dichvus as $dichvu)
+                                @if($dichvu == $diadiem->dichvus->first())
+                                <tr>
+                                    <td>
+                                        <table class="table table-bordered">
+                                            <tr>  
+                                                <td><input type="text" name="dichvu_anhdaidien[]" placeholder="Ảnh đại diện" class="form-control" value="{{ $dichvu->anhdaidien }}" /></td>  
+                                                <td><input type="text" name="dichvu_tendichvu[]" placeholder="Tên dịch vụ" class="form-control" value="{{ $dichvu->tendichvu }}" /></td>  
+                                                <td><input type="text" name="dichvu_motangan[]" placeholder="Mô tả ngắn" class="form-control" value="{{ $dichvu->motangan }}" /></td>  
+                                                <td><input type="text" name="dichvu_gia[]" placeholder="Giá" class="form-control" value="{{ $dichvu->gia }}" /></td>  
+                                                <td><button type="button" name="add" id="add" class="btn btn-success">+</button></td>  
+                                            </tr>
+                                            <tr>
+                                                <td colspan="5"><input type="text" name="dichvu_gioithieu[]" placeholder="Giới thiệu" class="form-control" value="{{ $dichvu->gioithieu }}" /></td>  
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                @else
+                                <tr id="{{ 'row'.$i }}" class="dynamic-added">
+                                    <td>
+                                        <table class="table table-bordered">
+                                            <tr>  
+                                                <td><input type="text" name="dichvu_anhdaidien[]" placeholder="Ảnh đại diện" class="form-control" value="{{ $dichvu->anhdaidien }}" /></td>  
+                                                <td><input type="text" name="dichvu_tendichvu[]" placeholder="Tên dịch vụ" class="form-control" value="{{ $dichvu->tendichvu }}" /></td>  
+                                                <td><input type="text" name="dichvu_motangan[]" placeholder="Mô tả ngắn" class="form-control" value="{{ $dichvu->motangan }}" /></td>  
+                                                <td><input type="text" name="dichvu_gia[]" placeholder="Giá" class="form-control" value="{{ $dichvu->gia }}" /></td>  
+                                                <td><button type="button" name="remove" id="{{ $i }}" class="btn btn-danger btn_remove">X</button></td>  
+                                            </tr>
+                                            <tr>
+                                                <td colspan="5"><input type="text" name="dichvu_gioithieu[]" placeholder="Giới thiệu" class="form-control" value="{{ $dichvu->gioithieu }}" /></td>  
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                @endif
+                                <?php
+                                $i++;
+                                ?>
+                                @endforeach
+                            </table>
+                            @endif
+                        </div>
+                    </div>
+                </div>
         </div><!--card-body-->
 
         <div class="card-footer">
@@ -220,10 +304,22 @@
             theme: 'snow'
         });
         $('.quill-form').submit(function () {
-            debugger;
             var gioithieu = document.querySelector('input[name=gioithieu]');
             gioithieu.value = editor.root.innerHTML;
         });
-    });
+
+        
+        //Dynamic field
+        var i=1;  
+        $('#add').click(function(){  
+            i++;  
+            $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"> <td> <table class="table table-bordered"> <tr>  <td><input type="text" name="dichvu_anhdaidien[]" placeholder="Ảnh đại diện" class="form-control" /></td>  <td><input type="text" name="dichvu_tendichvu[]" placeholder="Tên dịch vụ" class="form-control" /></td>  <td><input type="text" name="dichvu_motangan[]" placeholder="Mô tả ngắn" class="form-control" /></td>  <td><input type="text" name="dichvu_gia[]" placeholder="Giá" class="form-control" /></td>  <td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td>  </tr> <tr> <td colspan="5"><input type="text" name="dichvu_gioithieu[]" placeholder="Giới thiệu" class="form-control" /></td>  </tr> </table> </td> </tr>');  
+        });  
+
+        $(document).on('click', '.btn_remove', function(){  
+            var button_id = $(this).attr("id");   
+            $('#row'+button_id+'').remove();  
+        });  
+});
 </script>
 @endpush

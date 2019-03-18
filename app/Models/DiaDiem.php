@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use App\Models\DichVu;
 
 /**
  * Class DiaDiem.
@@ -71,5 +72,12 @@ class DiaDiem extends Eloquent
 			</div>
 		  </div>
 		</div>';
+    }
+
+    public function dichvus()
+    {
+      // return $this->belongsToMany(App\Models\DichVu::class);
+      // return $this->hasMany(DichVu::class);
+      return $this->embedsMany(DichVu::class);
     }
 }

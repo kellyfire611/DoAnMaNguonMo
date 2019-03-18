@@ -143,6 +143,41 @@
                         </div><!--form-group-->
                     </div><!--col-->
                 </div><!--row-->
+
+                <div class="row">
+                    <div class="col-sm-5">
+                        <h5 class="card-title mb-0">
+                            Chi tiết Dịch vụ
+                        </h5>
+                    </div><!--col-->
+                </div><!--row-->
+
+                <hr>
+
+                <div class="row mt-4 mb-4">
+                    <div class="col">
+                        <div class="table-responsive">  
+                            <table class="table table-bordered" id="dynamic_field">
+                                <tr>
+                                    <td>
+                                        <table class="table table-bordered">
+                                            <tr>  
+                                                <td><input type="text" name="dichvu_anhdaidien[]" placeholder="Ảnh đại diện" class="form-control" /></td>  
+                                                <td><input type="text" name="dichvu_tendichvu[]" placeholder="Tên dịch vụ" class="form-control" /></td>  
+                                                <td><input type="text" name="dichvu_motangan[]" placeholder="Mô tả ngắn" class="form-control" /></td>  
+                                                <td><input type="text" name="dichvu_gia[]" placeholder="Giá" class="form-control" /></td>  
+                                                <td><button type="button" name="add" id="add" class="btn btn-success">+</button></td>  
+                                            </tr>
+                                            <tr>
+                                                <td colspan="5"><input type="text" name="dichvu_gioithieu[]" placeholder="Giới thiệu" class="form-control" /></td>  
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>  
+                        </div>
+                    </div>
+                </div>
             </div><!--card-body-->
 
             <div class="card-footer clearfix">
@@ -220,10 +255,22 @@
             theme: 'snow'
         });
         $('.quill-form').submit(function () {
-            debugger;
             var gioithieu = document.querySelector('input[name=gioithieu]');
             gioithieu.value = editor.root.innerHTML;
         });
-    });
+
+        //Dynamic field
+        var i=1;  
+        $('#add').click(function(){  
+            i++;  
+            //$('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"><td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
+            $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"> <td> <table class="table table-bordered"> <tr>  <td><input type="text" name="dichvu_anhdaidien[]" placeholder="Ảnh đại diện" class="form-control" /></td>  <td><input type="text" name="dichvu_tendichvu[]" placeholder="Tên dịch vụ" class="form-control" /></td>  <td><input type="text" name="dichvu_motangan[]" placeholder="Mô tả ngắn" class="form-control" /></td>  <td><input type="text" name="dichvu_gia[]" placeholder="Giá" class="form-control" /></td>  <td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td>  </tr> <tr> <td colspan="5"><input type="text" name="dichvu_gioithieu[]" placeholder="Giới thiệu" class="form-control" /></td>  </tr> </table> </td> </tr>');  
+        });  
+
+        $(document).on('click', '.btn_remove', function(){  
+            var button_id = $(this).attr("id");   
+            $('#row'+button_id+'').remove();  
+        });  
+});
 </script>
 @endpush
