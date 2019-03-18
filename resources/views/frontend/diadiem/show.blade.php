@@ -21,7 +21,7 @@
 <section class="sample-text-area">
     <div class="container">
         <h3 class="text-heading">Giới thiệu</h3>
-        {{ $diadiem->gioithieu }}
+        {!! $diadiem->gioithieu !!}
     </div>
 </section>
 <!-- End Sample Area -->

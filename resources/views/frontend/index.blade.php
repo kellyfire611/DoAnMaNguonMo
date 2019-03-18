@@ -41,7 +41,7 @@
 							</div>
 							<h4 class="text-uppercase pt-20 pb-20"><a href="{{ route('frontend.diadiem.show', ['diadiem' => $diadiem->_id]) }}">{{ $diadiem->tendiadiem }}</a></h4>
 							<p>
-                                {{ $diadiem->gioithieu }}
+                                {{ $diadiem->motangan }}
 							</p>
 						</div>
                         @endforeach
@@ -122,15 +122,15 @@
 							<div class="item row align-items-center">
 								<div class="col-lg-6 rel-left">
 								   <h3>
-								   		Fresh & Crispy All the time
+								   		{{ $monan->tendiadiem }}
 								   </h3>
 								   <p class="pt-30 pb-30">
-								 	  	Who are in extremely love with eco friendly system. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+								 	  	{{ $monan->motangan }}
 								   </p>
 									<a href="#" class="primary-btn header-btn text-uppercase">Ghé thăm Địa điểm ngay</a>								   
 								</div>
 								<div class="col-lg-6">
-									<img class="img-fluid" src="img/slider1.jpg" alt="">
+									<img class="img-fluid" src="{{ asset('storage/uploads/'.$monan->anhdaidien) }}" alt="">
 								</div>
                             </div>
                             @endforeach

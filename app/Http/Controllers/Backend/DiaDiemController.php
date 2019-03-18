@@ -74,7 +74,7 @@ class DiaDiemController extends Controller
             'trangthai'
         ));
 
-        return redirect()->route('admin.diadiem.index')->withFlashSuccess(__('alerts.backend.diadiem.created'));
+        return redirect()->route('admin.diadiem.index')->withFlashSuccess('Thêm mới Địa điểm thành công');
     }
 
     /**
@@ -130,7 +130,7 @@ class DiaDiemController extends Controller
             'trangthai'
         ));
 
-        return redirect()->route('admin.diadiem.index')->withFlashSuccess(__('alerts.backend.diadiem.updated'));
+        return redirect()->route('admin.diadiem.index')->withFlashSuccess('Cập nhật Địa điểm thành công!');
     }
 
     /**
@@ -144,6 +144,6 @@ class DiaDiemController extends Controller
     {
         $this->DiaDiemRepository->deleteById($_id);
 
-        return redirect()->route('admin.diadiem.index')->withFlashSuccess(__('alerts.backend.diadiem.deleted'));
+        return redirect()->route('admin.diadiem.index')->withFlashSuccess('Xóa địa điểm thành công');
     }
 }

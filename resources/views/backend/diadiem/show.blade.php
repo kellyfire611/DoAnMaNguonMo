@@ -34,10 +34,6 @@
                         <td>{{ $diadiem->anhdaidien }}</td>
                     </tr>
                     <tr>
-                        <th>Giới thiệu</th>
-                        <td>{{ $diadiem->gioithieu }}</td>
-                    </tr>
-                    <tr>
                         <th>Từ khóa</th>
                         <td>{{ $diadiem->tukhoa }}</td>
                     </tr>
@@ -72,6 +68,10 @@
                     <tr>
                         <th>Ngày cập nhật</th>
                         <td>{{ $diadiem->updated_at }}</td>
+                    </tr>
+                    <tr>
+                        <th>Giới thiệu</th>
+                        <td>{!! $diadiem->gioithieu !!}</td>
                     </tr>
                 </table>
             </div>

@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    {{ html()->form('POST', route('admin.diadiem.store'))->class('form-horizontal')->open() }}
+    {{ html()->form('POST', route('admin.diadiem.store'))->class('form-horizontal quill-form')->open() }}
         <div class="card">
             <div class="card-body">
                 <div class="row">
@@ -52,17 +52,6 @@
                                 {{ html()->text('anhdaidien')
                                     ->class('form-control')
                                     ->placeholder('Ảnh đại diện')
-                                    ->attribute('maxlength', 191)
-                                    ->required() }}
-                            </div><!--col-->
-                        </div><!--form-group-->
-                        
-                        <div class="form-group row">
-                            {{ html()->label('Giới thiệu')->class('col-md-2 form-control-label')->for('gioithieu') }}
-                            <div class="col-md-10">
-                                {{ html()->text('gioithieu')
-                                    ->class('form-control')
-                                    ->placeholder('Giới thiệu')
                                     ->attribute('maxlength', 191)
                                     ->required() }}
                             </div><!--col-->
@@ -144,6 +133,14 @@
                                     ->required() }}
                             </div><!--col-->
                         </div><!--form-group-->
+
+                        <div class="form-group row">
+                            {{ html()->label('Giới thiệu')->class('col-md-2 form-control-label')->for('gioithieu') }}
+                            <div class="col-md-10">
+                                <input name="gioithieu" type="hidden">
+                                <div id="gioithieu-editor-container"></div>
+                            </div><!--col-->
+                        </div><!--form-group-->
                     </div><!--col-->
                 </div><!--row-->
             </div><!--card-body-->
@@ -162,3 +159,71 @@
         </div><!--card-->
     {{ html()->form()->close() }}
 @endsection
+
+@push('after-scripts')
+<script>
+    $(document).ready(function(){
+        var toolbarOptions = [
+            ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+            ['blockquote', 'code-block'],
+
+            [{
+                'header': 1
+            }, {
+                'header': 2
+            }], // custom button values
+            [{
+                'list': 'ordered'
+            }, {
+                'list': 'bullet'
+            }],
+            [{
+                'script': 'sub'
+            }, {
+                'script': 'super'
+            }], // superscript/subscript
+            [{
+                'indent': '-1'
+            }, {
+                'indent': '+1'
+            }], // outdent/indent
+            [{
+                'direction': 'rtl'
+            }], // text direction
+
+            [{
+                'size': ['small', false, 'large', 'huge']
+            }], // custom dropdown
+            [{
+                'header': [1, 2, 3, 4, 5, 6, false]
+            }],
+
+            [{
+                'color': []
+            }, {
+                'background': []
+            }], // dropdown with defaults from theme
+            [{
+                'font': []
+            }],
+            [{
+                'align': []
+            }],
+
+            ['clean'], // remove formatting button
+            ['link', 'image', 'video']
+        ];
+        var editor = new Quill('#gioithieu-editor-container', {
+            modules: {
+                toolbar: toolbarOptions
+            },
+            theme: 'snow'
+        });
+        $('.quill-form').submit(function () {
+            debugger;
+            var gioithieu = document.querySelector('input[name=gioithieu]');
+            gioithieu.value = editor.root.innerHTML;
+        });
+    });
+</script>
+@endpush
