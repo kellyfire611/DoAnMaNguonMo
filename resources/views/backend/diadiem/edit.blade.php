@@ -35,6 +35,18 @@
                     </div><!--form-group-->
 
                     <div class="form-group row">
+                            {{ html()->label("Mô tả ngắn")->class('col-md-2 form-control-label')->for('motangan') }}
+                            <div class="col-md-10">
+                                {{ html()->text('motangan')
+                                    ->class('form-control')
+                                    ->placeholder("Mô tả ngắn")
+                                    ->attribute('maxlength', 191)
+                                    ->required()
+                                    ->autofocus() }}
+                            </div><!--col-->
+                        </div><!--form-group-->
+
+                    <div class="form-group row">
                             {{ html()->label('Ảnh đại diện')->class('col-md-2 form-control-label')->for('anhdaidien') }}
                             <div class="col-md-10">
                                 {{ html()->text('anhdaidien')

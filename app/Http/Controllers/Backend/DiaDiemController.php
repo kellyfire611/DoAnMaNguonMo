@@ -62,6 +62,7 @@ class DiaDiemController extends Controller
     {
         $this->DiaDiemRepository->create($request->only(
             'tendiadiem',
+            'motangan',
             'anhdaidien',
             'gioithieu',
             'tukhoa',
@@ -116,7 +117,17 @@ class DiaDiemController extends Controller
     {
         $DiaDiem = DiaDiem::find($_id);
         $this->DiaDiemRepository->update($DiaDiem, $request->only(
-            'tendiadiem'
+            'tendiadiem',
+            'motangan',
+            'anhdaidien',
+            'gioithieu',
+            'tukhoa',
+            'dienthoai',
+            'email',
+            'giomocua',
+            'giodongcua',
+            'GPS',
+            'trangthai'
         ));
 
         return redirect()->route('admin.diadiem.index')->withFlashSuccess(__('alerts.backend.diadiem.updated'));

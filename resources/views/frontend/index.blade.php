@@ -39,7 +39,7 @@
                             <div class="thumb">
                                 <img class="img-fluid" src="{{ asset('storage/uploads/'.$diadiem->anhdaidien) }}" alt="">
 							</div>
-							<h4 class="text-uppercase pt-20 pb-20">{{ $diadiem->tendiadiem }}</h4>
+							<h4 class="text-uppercase pt-20 pb-20"><a href="{{ route('frontend.diadiem.show', ['diadiem' => $diadiem->_id]) }}">{{ $diadiem->tendiadiem }}</a></h4>
 							<p>
                                 {{ $diadiem->gioithieu }}
 							</p>

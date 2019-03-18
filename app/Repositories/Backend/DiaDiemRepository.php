@@ -64,6 +64,7 @@ class DiaDiemRepository extends BaseRepository
     {
         $DiaDiem = parent::create([
             'tendiadiem' => $data['tendiadiem'],
+            'motangan' => $data['motangan'],
             'anhdaidien' => $data['anhdaidien'],
             'gioithieu' => $data['gioithieu'],
             'tukhoa' => $data['tukhoa'],
@@ -95,6 +96,7 @@ class DiaDiemRepository extends BaseRepository
     {       
         if ($DiaDiem->update([
             'tendiadiem' => $data['tendiadiem'],
+            'motangan' => $data['motangan'],
             'anhdaidien' => $data['anhdaidien'],
             'gioithieu' => $data['gioithieu'],
             'tukhoa' => $data['tukhoa'],
