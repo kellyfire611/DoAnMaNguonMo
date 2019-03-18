@@ -21,7 +21,7 @@ class DiaDiem extends Eloquent
      *
      * @var array
      */
-    protected $fillable = ['tendiadiem'];
+    protected $fillable = ['tendiadiem', 'anhdaidien', 'gioithieu', 'tukhoa', 'dienthoai', 'email', 'giomocua', 'giodongcua', 'GPS', 'trangthai'];
 
     /**
      * @return string

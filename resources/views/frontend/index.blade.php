@@ -3,38 +3,237 @@
 @section('title', app_name() . ' | ' . __('navs.general.home'))
 
 @section('content')
-    <div class="row mb-4">
-        <div class="col">
-            <div class="card">
-                <div class="card-header">
-                    <i class="fas fa-home"></i> @lang('navs.general.home')
-                </div>
-                <div class="card-body">
-                    @lang('strings.frontend.welcome_to', ['place' => app_name()])
-                </div>
-            </div><!--card-->
-        </div><!--col-->
-    </div><!--row-->
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+    <div class="container">
+        <div class="row fullscreen d-flex align-items-center justify-content-start">
+            <div class="banner-content col-lg-8 col-md-12">
+                <h4 class="text-white text-uppercase">Có nhiều sự lựa chọn về Ẩm thực?</h4>
+                <h1>
+                    FEEDY Cung cấp các Địa điểm Ẩm thực nổi tiếng			
+                </h1>
+                <p class="text-white">
+                    Cùng khám phá các Địa điểm Ẩm thực nổi tiếng <br> ở gần ngay bên bạn mà bạn chưa biết đến?.
+                </p>
+                <a href="#" class="primary-btn header-btn text-uppercase">KHÁM PHÁ NGAY</a>
+            </div>												
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
 
-    <div class="row mb-4">
-        <div class="col">
-            <example-component></example-component>
-        </div><!--col-->
-    </div><!--row-->
+<!-- Start top-dish Area -->
+<section class="top-dish-area section-gap" id="dish">
+				<div class="container">
+					<div class="row d-flex justify-content-center">
+						<div class="menu-content pb-60 col-lg-8">
+							<div class="title text-center">
+								<h1 class="mb-10">Các địa điểm Ẩm thực hot nhất</h1>
+								<p>Được tuyển chọn với niềm tin yêu tuyệt đối từ Thực khách</p>
+							</div>
+						</div>
+					</div>						
+					<div class="row">
+                        @foreach($diadiems as $diadiem)
+						<div class="single-dish col-lg-4">
+                            <div class="thumb">
+                                <img class="img-fluid" src="{{ asset('storage/uploads/'.$diadiem->anhdaidien) }}" alt="">
+							</div>
+							<h4 class="text-uppercase pt-20 pb-20">{{ $diadiem->tendiadiem }}</h4>
+							<p>
+                                {{ $diadiem->gioithieu }}
+							</p>
+						</div>
+                        @endforeach
+					</div>
+				</div>	
+			</section>
+			<!-- End top-dish Area -->
+			
+			<!-- Start video Area -->
+			<section class="video-area">
+				<div class="container">
+					<div class="row justify-content-center align-items-center flex-column">
+						<a class="play-btn" href="https://www.youtube.com/watch?v=MflT0I7ZPCs">
+							<img src="img/play-btn.png" alt="">
+						</a>
+						<h3 class="pt-20 pb-20 text-white">Chúng tôi luôn cố gắng cung cấp các Địa điểm Ẩm thực với các món ăn tuyệt hảo nhất</h3>
+						<p class="text-white">Click vào để xem video Ẩm thực cực bắt mắt</p>
+					</div>
+				</div>	
+			</section>
+			<!-- End video Area -->
+			
 
-    <div class="row">
-        <div class="col">
-            <div class="card">
-                <div class="card-header">
-                    <i class="fab fa-font-awesome-flag"></i> Font Awesome @lang('strings.frontend.test')
-                </div>
-                <div class="card-body">
-                    <i class="fas fa-home"></i>
-                    <i class="fab fa-facebook"></i>
-                    <i class="fab fa-twitter"></i>
-                    <i class="fab fa-pinterest"></i>
-                </div><!--card-body-->
-            </div><!--card-->
-        </div><!--col-->
-    </div><!--row-->
+			<!-- Start features Area -->
+			<section class="features-area pt-100" id="feature">
+				<div class="container">
+					<div class="feature-section">
+						<div class="row">
+							<div class="single-feature col-lg-3 col-md-6">
+								<img src="img/f1.png" alt="">
+								<h4 class="pt-20 pb-20">Bữa sáng NGON LÀNH</h4>
+								<p>
+									Nạp đầy năng lượng cho buổi sáng làm việc!
+								</p>
+							</div>
+							<div class="single-feature col-lg-3 col-md-6">
+								<img src="img/f2.png" alt="">
+								<h4 class="pt-20 pb-20">Bữa trưa TUYỆT HẢO</h4>
+								<p>
+									Thưởng thức bữa trưa văn phòng ấm áp cùng Đồng nghiệp!
+								</p>
+							</div>
+							<div class="single-feature col-lg-3 col-md-6">
+								<img src="img/f3.png" alt="">
+								<h4 class="pt-20 pb-20">Bữa tối NGỌT NGÀO</h4>
+								<p>
+									Lãng mạn, tinh tế cho cặp đôi.
+								</p>
+							</div>
+							<div class="single-feature col-lg-3 col-md-6">
+								<img src="img/f4.png" alt="">
+								<h4 class="pt-20 pb-20">CHẤT LƯỢNG ĐỈNH CAO</h4>
+								<p>
+									Sống là để hưởng thụ, ăn, uống chất lượng!!!
+								</p>
+							</div>														
+						</div>											
+					</div>
+				</div>	
+			</section>
+			<!-- End features Area -->
+
+
+			<!-- Start related Area -->
+			<section class="related-area section-gap">
+				<div class="container">
+					<div class="row d-flex justify-content-center">
+						<div class="menu-content pb-60 col-lg-8">
+							<div class="title text-center">
+								<h1 class="mb-10">Các món ăn phổ biến nhất</h1>
+								<p>Chúng tôi tận tâm tìm kiếm các món ăn đầy thú vị cho thực khách</p>
+							</div>
+						</div>
+					</div>						
+					<div class="row justify-content-center">
+						<div class="active-realated-carusel">
+                            @foreach($topmonans as $monan)
+							<div class="item row align-items-center">
+								<div class="col-lg-6 rel-left">
+								   <h3>
+								   		Fresh & Crispy All the time
+								   </h3>
+								   <p class="pt-30 pb-30">
+								 	  	Who are in extremely love with eco friendly system. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+								   </p>
+									<a href="#" class="primary-btn header-btn text-uppercase">Ghé thăm Địa điểm ngay</a>								   
+								</div>
+								<div class="col-lg-6">
+									<img class="img-fluid" src="img/slider1.jpg" alt="">
+								</div>
+                            </div>
+                            @endforeach
+						</div>
+					</div>
+				</div>	
+			</section>
+			<!-- End related Area -->	
+
+
+			<!-- Start team Area -->
+			<section class="team-area section-gap" id="chefs">
+				<div class="container">
+					<div class="row d-flex justify-content-center">
+						<div class="menu-content pb-70 col-lg-8">
+							<div class="title text-center">
+								<h1 class="mb-10">Gặp gỡ các Đầu bếp siêu hạng</h1>
+								<p>Người đánh giá, kiểm định chất lượng của các Địa điểm Ẩm thực</p>
+							</div>
+						</div>
+					</div>						
+					<div class="row justify-content-center d-flex align-items-center">
+						<div class="col-md-3 single-team">
+						    <div class="thumb">
+						        <img class="img-fluid" src="img/t1.jpg" alt="">
+						        <div class="align-items-center justify-content-center d-flex">
+									<a href="#"><i class="fa fa-facebook"></i></a>
+									<a href="#"><i class="fa fa-twitter"></i></a>
+									<a href="#"><i class="fa fa-linkedin"></i></a>
+						        </div>
+						    </div>
+						    <div class="meta-text mt-30 text-center">
+							    <h4>Ethel Davis</h4>
+							    <p>Quản lý Nhà Hàng</p>									    	
+						    </div>
+						</div>
+						<div class="col-md-3 single-team">
+						    <div class="thumb">
+						        <img class="img-fluid" src="img/t2.jpg" alt="">
+						        <div class="align-items-center justify-content-center d-flex">
+									<a href="#"><i class="fa fa-facebook"></i></a>
+									<a href="#"><i class="fa fa-twitter"></i></a>
+									<a href="#"><i class="fa fa-linkedin"></i></a>
+						        </div>
+						    </div>
+						    <div class="meta-text mt-30 text-center">
+							    <h4>Rodney Cooper</h4>
+							    <p>Bếp Trưởng</p>			    	
+						    </div>
+						</div>	
+						<div class="col-md-3 single-team">
+						    <div class="thumb">
+						        <img class="img-fluid" src="img/t3.jpg" alt="">
+						        <div class="align-items-center justify-content-center d-flex">
+									<a href="#"><i class="fa fa-facebook"></i></a>
+									<a href="#"><i class="fa fa-twitter"></i></a>
+									<a href="#"><i class="fa fa-linkedin"></i></a>
+						        </div>
+						    </div>
+						    <div class="meta-text mt-30 text-center">
+							    <h4>Dora Walker</h4>
+							    <p>Thợ nấu bếp lâu năm</p>			    	
+						    </div>
+						</div>	
+						<div class="col-md-3 single-team">
+						    <div class="thumb">
+						        <img class="img-fluid" src="img/t4.jpg" alt="">
+						        <div class="align-items-center justify-content-center d-flex">
+									<a href="#"><i class="fa fa-facebook"></i></a>
+									<a href="#"><i class="fa fa-twitter"></i></a>
+									<a href="#"><i class="fa fa-linkedin"></i></a>
+						        </div>
+						    </div>
+						    <div class="meta-text mt-30 text-center">
+							    <h4>Lena Keller</h4>
+							    <p>Chuyên gia Bình Luận Ẩm thực</p>			    	
+						    </div>
+						</div>																		
+					</div>
+				</div>	
+			</section>
+			<!-- End team Area -->			
+
+			<!-- Start Contact Area -->
+			<section class="contact-area" id="contact">
+				<div class="container-fluid">
+					<div class="row align-items-center d-flex justify-content-start">
+						<div class="col-lg-6 col-md-12 contact-left no-padding">
+	      					<div style=" width:100%;
+	                height: 545px;" id="map"></div>
+						</div>
+						<div class="col-lg-4 col-md-12 pt-100 pb-100">
+							<form class="form-area" id="myForm" action="" method="post" class="contact-form text-right">
+								<input name="fname" placeholder="Tên của bạn" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tên của bạn'" class="common-input mt-10" required="" type="text">
+								<input name="email" placeholder="Email của bạn" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email của bạn'" class="common-input mt-10" required="" type="email">
+								<textarea class="common-textarea mt-10" name="message" placeholder="Lời nhắn" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Lời nhắn'" required=""></textarea>
+								<button class="primary-btn mt-20">Gởi lời nhắn đến Feedy<span class="lnr lnr-arrow-right"></span></button>
+								<div class="mt-10 alert-msg">
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- End Contact Area -->	
 @endsection

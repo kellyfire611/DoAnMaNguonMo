@@ -64,6 +64,15 @@ class DiaDiemRepository extends BaseRepository
     {
         $DiaDiem = parent::create([
             'tendiadiem' => $data['tendiadiem'],
+            'anhdaidien' => $data['anhdaidien'],
+            'gioithieu' => $data['gioithieu'],
+            'tukhoa' => $data['tukhoa'],
+            'dienthoai' => $data['dienthoai'],
+            'email' => $data['email'],
+            'giomocua' => $data['giomocua'],
+            'giodongcua' => $data['giodongcua'],
+            'GPS' => $data['GPS'],
+            'trangthai' => $data['trangthai'],
         ]);
 
         if ($DiaDiem) {
@@ -85,7 +94,16 @@ class DiaDiemRepository extends BaseRepository
     public function update(DiaDiem $DiaDiem, array $data) : DiaDiem
     {       
         if ($DiaDiem->update([
-            'tendiadiem' => $data['tendiadiem']
+            'tendiadiem' => $data['tendiadiem'],
+            'anhdaidien' => $data['anhdaidien'],
+            'gioithieu' => $data['gioithieu'],
+            'tukhoa' => $data['tukhoa'],
+            'dienthoai' => $data['dienthoai'],
+            'email' => $data['email'],
+            'giomocua' => $data['giomocua'],
+            'giodongcua' => $data['giodongcua'],
+            'GPS' => $data['GPS'],
+            'trangthai' => $data['trangthai'],
         ])) {
             return $DiaDiem;
         }

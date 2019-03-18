@@ -61,7 +61,16 @@ class DiaDiemController extends Controller
     public function store(StoreDiaDiemRequest $request)
     {
         $this->DiaDiemRepository->create($request->only(
-            'tendiadiem'
+            'tendiadiem',
+            'anhdaidien',
+            'gioithieu',
+            'tukhoa',
+            'dienthoai',
+            'email',
+            'giomocua',
+            'giodongcua',
+            'GPS',
+            'trangthai'
         ));
 
         return redirect()->route('admin.diadiem.index')->withFlashSuccess(__('alerts.backend.diadiem.created'));
