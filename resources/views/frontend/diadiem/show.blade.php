@@ -4,7 +4,7 @@
 
 @section('content')
 <!-- Start banner Area -->
-<section class="generic-banner relative">						
+<section class="generic-banner relative" style="background: url('{{ asset('storage/uploads/'.$diadiem->anhdaidien) }}'); background-position: center; background-repeat: no-repeat; background-size: cover;">						
     <div class="container">
         <div class="row height align-items-center justify-content-center">
             <div class="col-lg-10">
