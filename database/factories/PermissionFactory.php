@@ -2,6 +2,6 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(\Spatie\Permission\Models\Permission::class, function (Faker $faker) {
+$factory->define(\Maklad\Permission\Models\Permission::class, function (Faker $faker) {
     return [];
 });

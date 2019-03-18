@@ -99,7 +99,6 @@ class UserRepository extends BaseRepository
      */
     public function create(array $data) : User
     {
-        return DB::transaction(function () use ($data) {
             $user = parent::create([
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
@@ -136,7 +135,6 @@ class UserRepository extends BaseRepository
             }
 
             throw new GeneralException(__('exceptions.backend.access.users.create_error'));
-        });
     }
 
     /**
@@ -157,7 +155,6 @@ class UserRepository extends BaseRepository
             $data['permissions'] = [];
         }
 
-        return DB::transaction(function () use ($user, $data) {
             if ($user->update([
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
@@ -173,7 +170,6 @@ class UserRepository extends BaseRepository
             }
 
             throw new GeneralException(__('exceptions.backend.access.users.update_error'));
-        });
     }
 
     /**
@@ -303,7 +299,6 @@ class UserRepository extends BaseRepository
             throw new GeneralException(__('exceptions.backend.access.users.delete_first'));
         }
 
-        return DB::transaction(function () use ($user) {
             // Delete associated relationships
             $user->passwordHistories()->delete();
             $user->providers()->delete();
@@ -316,7 +311,6 @@ class UserRepository extends BaseRepository
             }
 
             throw new GeneralException(__('exceptions.backend.access.users.delete_error'));
-        });
     }
 
     /**
