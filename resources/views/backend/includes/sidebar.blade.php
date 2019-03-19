@@ -52,13 +52,13 @@
 
             <li class="nav-item nav-dropdown {{ active_class(Active::checkUriPattern('admin/tinhthanh*'), 'open') }}">
                 <a class="nav-link nav-dropdown-toggle {{ active_class(Active::checkUriPattern('admin/tinhthanh*')) }}" href="#">
-                    <i class="nav-icon icon-list"></i> @lang('menus.backend.tinhthanh.main')
+                    <i class="nav-icon icon-list"></i> Quản lý danh mục
                 </a>
 
                 <ul class="nav-dropdown-items">
                     <li class="nav-item">
                         <a class="nav-link {{ active_class(Active::checkUriPattern('admin/tinhthanh')) }}" href="{{ route('admin.tinhthanh.index') }}">
-                            @lang('menus.backend.tinhthanh.management')
+                            Danh mục Tỉnh thành
                         </a>
                     </li>
                 </ul>
@@ -69,13 +69,13 @@
 
             <li class="nav-item nav-dropdown {{ active_class(Active::checkUriPattern('admin/diadiem*'), 'open') }}">
                 <a class="nav-link nav-dropdown-toggle {{ active_class(Active::checkUriPattern('admin/diadiem*')) }}" href="#">
-                    <i class="nav-icon icon-list"></i> @lang('menus.backend.diadiem.main')
+                    <i class="nav-icon icon-list"></i> Quản lý Địa điểm
                 </a>
 
                 <ul class="nav-dropdown-items">
                     <li class="nav-item">
                         <a class="nav-link {{ active_class(Active::checkUriPattern('admin/diadiem')) }}" href="{{ route('admin.diadiem.index') }}">
-                            Quản lý địa điểm
+                            Danh sách địa điểm
                         </a>
                     </li>
                 </ul>

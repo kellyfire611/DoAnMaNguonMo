@@ -3,6 +3,7 @@
 namespace App\Repositories\Backend;
 
 use App\Models\DiaDiem;
+use App\Models\DichVu;
 use Illuminate\Support\Facades\DB;
 use App\Exceptions\GeneralException;
 use App\Repositories\BaseRepository;
@@ -64,7 +65,22 @@ class DiaDiemRepository extends BaseRepository
     {
         $DiaDiem = parent::create([
             'tendiadiem' => $data['tendiadiem'],
+            'motangan' => $data['motangan'],
+            'anhdaidien' => $data['anhdaidien'],
+            'gioithieu' => $data['gioithieu'],
+            'tukhoa' => $data['tukhoa'],
+            'dienthoai' => $data['dienthoai'],
+            'email' => $data['email'],
+            'giomocua' => $data['giomocua'],
+            'giodongcua' => $data['giodongcua'],
+            'GPS' => $data['GPS'],
+            'trangthai' => $data['trangthai']
         ]);
+
+        foreach($data['dichvus'] as $key=>$value)
+        {
+            $DiaDiem->dichvus()->save($value);
+        }
 
         if ($DiaDiem) {
             return $DiaDiem;
@@ -85,8 +101,29 @@ class DiaDiemRepository extends BaseRepository
     public function update(DiaDiem $DiaDiem, array $data) : DiaDiem
     {       
         if ($DiaDiem->update([
-            'tendiadiem' => $data['tendiadiem']
+            'tendiadiem' => $data['tendiadiem'],
+            'motangan' => $data['motangan'],
+            'anhdaidien' => $data['anhdaidien'],
+            'gioithieu' => $data['gioithieu'],
+            'tukhoa' => $data['tukhoa'],
+            'dienthoai' => $data['dienthoai'],
+            'email' => $data['email'],
+            'giomocua' => $data['giomocua'],
+            'giodongcua' => $data['giodongcua'],
+            'GPS' => $data['GPS'],
+            'trangthai' => $data['trangthai']
         ])) {
+            
+            foreach($DiaDiem->dichvus as $key=>$value)
+            {
+                $DiaDiem->dichvus()->destroy($value);
+            }
+
+            foreach($data['dichvus'] as $key=>$value)
+            {
+                $DiaDiem->dichvus()->save($value);
+            }
+            
             return $DiaDiem;
         }
 

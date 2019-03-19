@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\DiaDiem;
+use App\Models\DichVu;
 use App\Http\Controllers\Controller;
 use App\Repositories\Backend\DiaDiemRepository;
 use App\Http\Requests\Backend\DiaDiem\StoreDiaDiemRequest;
@@ -60,11 +61,35 @@ class DiaDiemController extends Controller
      */
     public function store(StoreDiaDiemRequest $request)
     {
-        $this->DiaDiemRepository->create($request->only(
-            'tendiadiem'
-        ));
+        $dichvus = [];
+        foreach($request->input('dichvu_tendichvu') as $key => $value) {
+            $dichvus[] = new DichVu([
+                'tendichvu' => $request->input('dichvu_tendichvu')[$key], 
+                'motangan' => $request->input('dichvu_motangan')[$key], 
+                'anhdaidien' => $request->input('dichvu_anhdaidien')[$key], 
+                'gioithieu' => $request->input('dichvu_gioithieu')[$key], 
+                'gia' => $request->input('dichvu_gia')[$key],
+            ]);
+        }
 
-        return redirect()->route('admin.diadiem.index')->withFlashSuccess(__('alerts.backend.diadiem.created'));
+        $inputs = $request->only(
+            'tendiadiem',
+            'motangan',
+            'anhdaidien',
+            'gioithieu',
+            'tukhoa',
+            'dienthoai',
+            'email',
+            'giomocua',
+            'giodongcua',
+            'GPS',
+            'trangthai'
+        );
+        $inputs['dichvus'] = $dichvus;
+
+        $this->DiaDiemRepository->create($inputs);
+
+        return redirect()->route('admin.diadiem.index')->withFlashSuccess('Thêm mới Địa điểm thành công');
     }
 
     /**
@@ -106,11 +131,35 @@ class DiaDiemController extends Controller
     public function update(UpdateDiaDiemRequest $request, $_id)
     {
         $DiaDiem = DiaDiem::find($_id);
-        $this->DiaDiemRepository->update($DiaDiem, $request->only(
-            'tendiadiem'
-        ));
+        $dichvus = [];
+        foreach($request->input('dichvu_tendichvu') as $key => $value) {
+            $dichvus[] = new DichVu([
+                'tendichvu' => $request->input('dichvu_tendichvu')[$key], 
+                'motangan' => $request->input('dichvu_motangan')[$key], 
+                'anhdaidien' => $request->input('dichvu_anhdaidien')[$key], 
+                'gioithieu' => $request->input('dichvu_gioithieu')[$key], 
+                'gia' => $request->input('dichvu_gia')[$key],
+            ]);
+        }
 
-        return redirect()->route('admin.diadiem.index')->withFlashSuccess(__('alerts.backend.diadiem.updated'));
+        $inputs = $request->only(
+            'tendiadiem',
+            'motangan',
+            'anhdaidien',
+            'gioithieu',
+            'tukhoa',
+            'dienthoai',
+            'email',
+            'giomocua',
+            'giodongcua',
+            'GPS',
+            'trangthai'
+        );
+        $inputs['dichvus'] = $dichvus;
+
+        $this->DiaDiemRepository->update($DiaDiem, $inputs);
+
+        return redirect()->route('admin.diadiem.index')->withFlashSuccess('Cập nhật Địa điểm thành công!');
     }
 
     /**
@@ -124,6 +173,6 @@ class DiaDiemController extends Controller
     {
         $this->DiaDiemRepository->deleteById($_id);
 
-        return redirect()->route('admin.diadiem.index')->withFlashSuccess(__('alerts.backend.diadiem.deleted'));
+        return redirect()->route('admin.diadiem.index')->withFlashSuccess('Xóa địa điểm thành công');
     }
 }

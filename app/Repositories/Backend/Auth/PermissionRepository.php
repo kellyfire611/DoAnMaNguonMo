@@ -3,7 +3,7 @@
 namespace App\Repositories\Backend\Auth;
 
 use App\Repositories\BaseRepository;
-use Spatie\Permission\Models\Permission;
+use Maklad\Permission\Models\Permission;
 
 /**
  * Class PermissionRepository.

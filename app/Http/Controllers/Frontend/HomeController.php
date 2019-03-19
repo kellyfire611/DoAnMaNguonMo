@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Auth\User;
+use App\Models\DiaDiem;
 
 /**
  * Class HomeController.
@@ -15,8 +15,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $a = User::all();
-        
-        return view('frontend.index');
+        $diadiems = DiaDiem::take(3)->get();
+        $topmonans = DiaDiem::all();
+
+        return view('frontend.index')
+            ->with('diadiems', $diadiems)
+            ->with('topmonans', $topmonans);
     }
 }

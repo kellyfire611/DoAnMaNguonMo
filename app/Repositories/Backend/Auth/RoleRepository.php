@@ -44,7 +44,6 @@ class RoleRepository extends BaseRepository
             throw new GeneralException(__('exceptions.backend.access.roles.needs_permission'));
         }
 
-        return DB::transaction(function () use ($data) {
             $role = parent::create(['name' => strtolower($data['name'])]);
 
             if ($role) {
@@ -56,7 +55,6 @@ class RoleRepository extends BaseRepository
             }
 
             throw new GeneralException(trans('exceptions.backend.access.roles.create_error'));
-        });
     }
 
     /**
@@ -88,7 +86,6 @@ class RoleRepository extends BaseRepository
             throw new GeneralException(__('exceptions.backend.access.roles.needs_permission'));
         }
 
-        return DB::transaction(function () use ($role, $data) {
             if ($role->update([
                 'name' => strtolower($data['name']),
             ])) {
@@ -100,7 +97,6 @@ class RoleRepository extends BaseRepository
             }
 
             throw new GeneralException(trans('exceptions.backend.access.roles.update_error'));
-        });
     }
 
     /**

@@ -91,7 +91,6 @@ class UserRepository extends BaseRepository
      */
     public function create(array $data)
     {
-        return DB::transaction(function () use ($data) {
             $user = parent::create([
                 'first_name'        => $data['first_name'],
                 'last_name'         => $data['last_name'],
@@ -126,7 +125,6 @@ class UserRepository extends BaseRepository
              * Return the user object
              */
             return $user;
-        });
     }
 
     /**
