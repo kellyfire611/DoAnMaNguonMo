@@ -31,7 +31,7 @@
                     </tr>
                     <tr>
                         <th>Ảnh đại diện</th>
-                        <td>{{ $diadiem->anhdaidien }}</td>
+                        <td><img src="{{ asset('storage/'.$diadiem->anhdaidien) }}" /></td>
                     </tr>
                     <tr>
                         <th>Từ khóa</th>

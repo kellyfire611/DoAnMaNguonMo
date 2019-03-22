@@ -21,4 +21,15 @@ import 'pace';
 import Quill from 'quill';
 window.Quill = Quill;
 
+/* bootstrap-fileinput plugin
+*/
+import 'bootstrap-fileinput';
+import 'bootstrap-fileinput/themes/fas/theme';
+import 'bootstrap-fileinput/themes/explorer-fas/theme';
+
+/* cleaver.js plugin
+*/
+import 'cleave.js';
+import 'cleave.js/dist/addons/cleave-phone.vn';
+
 import '../plugins';

@@ -99,7 +99,7 @@ class DiaDiemRepository extends BaseRepository
      * @throws \Throwable
      */
     public function update(DiaDiem $DiaDiem, array $data) : DiaDiem
-    {       
+    {   
         if ($DiaDiem->update([
             'tendiadiem' => $data['tendiadiem'],
             'motangan' => $data['motangan'],

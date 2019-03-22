@@ -4,7 +4,7 @@
 
 @section('content')
 <!-- Start banner Area -->
-<section class="generic-banner relative" style="background: url('{{ asset('storage/uploads/'.$diadiem->anhdaidien) }}'); background-position: center; background-repeat: no-repeat; background-size: cover;">						
+<section class="generic-banner relative" style="background: url('{{ asset('storage/'.$diadiem->anhdaidien) }}'); background-position: center; background-repeat: no-repeat; background-size: cover;">						
     <div class="container">
         <div class="row height align-items-center justify-content-center">
             <div class="col-lg-10">
@@ -45,15 +45,15 @@
             @foreach($diadiem->dichvus as $dichvu)
             <tr>
                 <td>{{ $i }}</td>
-                <td><img class="img-thumbnail img-table-dichvu" src="{{ asset('storage/uploads/'.$dichvu->anhdaidien) }}" alt="{{ $dichvu->tendichvu }}"></td>
+                <td><img class="img-thumbnail img-table-dichvu" src="{{ asset('storage/'.$dichvu->anhdaidien) }}" alt="{{ $dichvu->tendichvu }}"></td>
                 <td>{{ $dichvu->tendichvu }}</td>
                 <td>{{ $dichvu->motangan }}</div>
                 <td>{{ $dichvu->gia }}</div>
             </tr>
-            @endforeach
             <?php
             $i++;
             ?>
+            @endforeach
         </table>  
     </div>
 </div>
@@ -63,7 +63,7 @@
             <div class="row gallery-item">
                 @foreach($diadiem->dichvus as $dichvu)
                 <div class="col-md-4">
-                    <a href="{{ asset('storage/uploads/'.$dichvu->anhdaidien) }}" class="img-pop-up"><div class="single-gallery-image" style="background: url({{ asset('storage/uploads/'.$dichvu->anhdaidien) }});"></div></a>
+                    <a href="{{ asset('storage/'.$dichvu->anhdaidien) }}" class="img-pop-up"><div class="single-gallery-image" style="background: url({{ asset('storage/'.$dichvu->anhdaidien) }});"></div></a>
                 </div>
                 @endforeach
             </div>

@@ -124,13 +124,13 @@
                         </div><!--form-group-->
 
                         <div class="form-group row">
-                            {{ html()->label('Trạng thái')->class('col-md-2 form-control-label')->for('trangthai') }}
+                            {{ html()->label('Duyệt')->class('col-md-2 form-control-label')->for('trangthai') }}
                             <div class="col-md-10">
-                                {{ html()->text('trangthai')
-                                    ->class('form-control')
-                                    ->placeholder('Trạng thái')
-                                    ->attribute('maxlength', 191)
-                                    ->required() }}
+                                @if($diadiem->trangthai == '1')
+                                <input type="checkbox" name="trangthai" value="1" checked />
+                                @else
+                                <input type="checkbox" name="trangthai" value="0" />
+                                @endif
                             </div><!--col-->
                         </div><!--form-group-->
 

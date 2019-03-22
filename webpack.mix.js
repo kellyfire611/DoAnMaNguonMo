@@ -34,6 +34,8 @@ mix.sass('resources/sass/frontend/app.scss', './public/css/frontend.css')
         '@fortawesome/free-solid-svg-icons'
     ]);
 
+//mix.copy('node_modules/font-awesome/fonts', 'public/fonts');
+
 if (mix.inProduction() || process.env.npm_lifecycle_event !== 'hot') {
     mix.version();
 }

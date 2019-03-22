@@ -37,7 +37,7 @@
                         @foreach($diadiems as $diadiem)
 						<div class="single-dish col-lg-4">
                             <div class="thumb">
-                                <img class="img-fluid" src="{{ asset('storage/uploads/'.$diadiem->anhdaidien) }}" alt="">
+                                <img class="img-fluid" src="{{ asset('storage/'.$diadiem->anhdaidien) }}" alt="">
 							</div>
 							<h4 class="text-uppercase pt-20 pb-20"><a href="{{ route('frontend.diadiem.show', ['diadiem' => $diadiem->_id]) }}">{{ $diadiem->tendiadiem }}</a></h4>
 							<p>
@@ -127,10 +127,10 @@
 								   <p class="pt-30 pb-30">
 								 	  	{{ $monan->motangan }}
 								   </p>
-									<a href="#" class="primary-btn header-btn text-uppercase">Ghé thăm Địa điểm ngay</a>								   
+									<a href="{{ route('frontend.diadiem.show', ['monan' => $monan->_id]) }}" class="primary-btn header-btn text-uppercase">Ghé thăm Địa điểm ngay</a>								   
 								</div>
 								<div class="col-lg-6">
-									<img class="img-fluid" src="{{ asset('storage/uploads/'.$monan->anhdaidien) }}" alt="">
+									<img class="img-fluid" src="{{ asset('storage/'.$monan->anhdaidien) }}" alt="">
 								</div>
                             </div>
                             @endforeach

@@ -1,3 +1,74 @@
+// plugin function
+(function ($, window, undefined) {
+    'use strict'
+
+    $.fn.cleave = function (opts) {
+
+        var defaults = {
+                autoUnmask: false
+            },
+            options = $.extend(defaults, opts || {});
+
+        return this.each(function () {
+            var cleave = new Cleave('#' + this.id, options),
+                $this = $(this);
+
+            $this.data('cleave-auto-unmask', options['autoUnmask']);;
+            $this.data('cleave', cleave)
+        });
+    }
+
+    var origGetHook, origSetHook;
+
+    if ($.valHooks.input) {
+
+        origGetHook = $.valHooks.input.get;
+        origSetHook = $.valHooks.input.set;
+
+    } else {
+
+        $.valHooks.input = {};
+    }
+
+    $.valHooks.input.get = function (el) {
+
+        var $el = $(el),
+            cleave = $el.data('cleave');
+
+        if (cleave) {
+
+            return $el.data('cleave-auto-unmask') ? cleave.getRawValue() : el.value;
+
+        } else if (origGetHook) {
+
+            return origGetHook(el);
+
+        } else {
+
+            return undefined;
+        }
+    }
+
+    $.valHooks.input.set = function (el, val) {
+
+        var $el = $(el),
+            cleave = $el.data('cleave');
+
+        if (cleave) {
+
+            cleave.setRawValue(val);
+            return $el;
+
+        } else if (origSetHook) {
+
+            return origSetHook(el);
+
+        } else {
+            return undefined;
+        }
+    }
+})(jQuery, window);
+
 /**
  * Allows you to add data-method="METHOD to links to automatically inject a form
  * with the method on click
@@ -84,6 +155,15 @@ $(function () {
             result.value && window.location.assign(link.attr('href'));
         });
     });
+
+    /* cleaver.js
+     */
+    $('.input-element-number').each((i, el) => {
+        var cleave = new Cleave(el, {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        });
+    });
 });
 
 // You can replace this with you own init script, e.g.:
@@ -150,3 +230,4 @@ window.onload = function () {
         });
     }
 }
+
