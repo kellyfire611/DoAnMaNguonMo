@@ -39,8 +39,10 @@
         @include('includes.partials.logged-in-as')
         @include('frontend.includes.nav')
 
+        <div class="app">
         @include('includes.partials.messages')
         @yield('content')
+        </div>
 
         @include('frontend.includes.footer')
         <!-- Scripts -->

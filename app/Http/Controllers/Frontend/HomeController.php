@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $diadiems = DiaDiem::take(3)->get();
+        $diadiems = DiaDiem::take(12)->get();
         $topmonans = DiaDiem::all();
 
         return view('frontend.index')

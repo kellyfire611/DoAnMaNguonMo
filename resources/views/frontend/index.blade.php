@@ -26,7 +26,7 @@
 <section class="top-dish-area section-gap" id="dish">
 				<div class="container">
 					<div class="row d-flex justify-content-center">
-						<div class="menu-content pb-60 col-lg-8">
+						<div class="menu-content col-lg-8">
 							<div class="title text-center">
 								<h1 class="mb-10">Các địa điểm Ẩm thực hot nhất</h1>
 								<p>Được tuyển chọn với niềm tin yêu tuyệt đối từ Thực khách</p>
@@ -35,11 +35,15 @@
 					</div>						
 					<div class="row">
                         @foreach($diadiems as $diadiem)
-						<div class="single-dish col-lg-4">
-                            <div class="thumb">
-                                <img class="img-fluid" src="{{ asset('storage/'.$diadiem->anhdaidien) }}" alt="">
-							</div>
-							<h4 class="text-uppercase pt-20 pb-20"><a href="{{ route('frontend.diadiem.show', ['diadiem' => $diadiem->_id]) }}">{{ $diadiem->tendiadiem }}</a></h4>
+						<div class="single-dish col-lg-3">
+							<div class="thumb box-ratio">
+                                <div class="box-ratio-content">
+									<a href="{{ route('frontend.diadiem.show', ['diadiem' => $diadiem->_id]) }}">
+										<img class="img-fluid" src="{{ asset('storage/'.$diadiem->anhdaidien) }}" alt="">
+                                    </a>
+                                </div>
+                            </div>
+							<h4 class="text-uppercase pt-10"><a href="{{ route('frontend.diadiem.show', ['diadiem' => $diadiem->_id]) }}">{{ $diadiem->tendiadiem }}</a></h4>
 							<p>
                                 {{ $diadiem->motangan }}
 							</p>
@@ -66,7 +70,7 @@
 			
 
 			<!-- Start features Area -->
-			<section class="features-area pt-100" id="feature">
+			<section class="features-area pt-20" id="feature">
 				<div class="container">
 					<div class="feature-section">
 						<div class="row">
@@ -109,7 +113,7 @@
 			<section class="related-area section-gap">
 				<div class="container">
 					<div class="row d-flex justify-content-center">
-						<div class="menu-content pb-60 col-lg-8">
+						<div class="menu-content col-lg-8">
 							<div class="title text-center">
 								<h1 class="mb-10">Các món ăn phổ biến nhất</h1>
 								<p>Chúng tôi tận tâm tìm kiếm các món ăn đầy thú vị cho thực khách</p>
@@ -129,8 +133,10 @@
 								   </p>
 									<a href="{{ route('frontend.diadiem.show', ['monan' => $monan->_id]) }}" class="primary-btn header-btn text-uppercase">Ghé thăm Địa điểm ngay</a>								   
 								</div>
-								<div class="col-lg-6">
-									<img class="img-fluid" src="{{ asset('storage/'.$monan->anhdaidien) }}" alt="">
+								<div class="col-lg-6 box-ratio">
+									<div class="box-ratio-content">
+										<img class="img-fluid" src="{{ asset('storage/'.$monan->anhdaidien) }}" alt="">
+									</div>
 								</div>
                             </div>
                             @endforeach
@@ -145,7 +151,7 @@
 			<section class="team-area section-gap" id="chefs">
 				<div class="container">
 					<div class="row d-flex justify-content-center">
-						<div class="menu-content pb-70 col-lg-8">
+						<div class="menu-content col-lg-8">
 							<div class="title text-center">
 								<h1 class="mb-10">Gặp gỡ các Đầu bếp siêu hạng</h1>
 								<p>Người đánh giá, kiểm định chất lượng của các Địa điểm Ẩm thực</p>
