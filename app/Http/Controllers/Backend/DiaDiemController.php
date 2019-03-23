@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Backend;
 use App\Models\DiaDiem;
 use App\Models\DichVu;
 use App\Models\DiaChi;
+use App\Models\TinhThanh;
+use App\Models\QuanHuyen;
+use App\Models\XaPhuong;
 use App\Http\Controllers\Controller;
 use App\Repositories\Backend\DiaDiemRepository;
 use App\Http\Requests\Backend\DiaDiem\StoreDiaDiemRequest;
@@ -51,7 +54,27 @@ class DiaDiemController extends Controller
      */
     public function create(ManageDiaDiemRequest $request)
     {
-        return view('backend.diaDiem.create');
+        $diachis = [];
+        $tinhthanh = TinhThanh::all();
+        foreach($tinhthanh as $keyTT => $valueTT)
+        {
+            foreach($valueTT->quanhuyens as $keyQH => $valueQH)
+            {
+                foreach($valueQH->xaphuongs as $keyXP => $valueXP)
+                {
+                    $diachis[] = [
+                        'tinhthanh' => $valueTT->tentinhthanh,
+                        'quanhuyen' => $valueQH->tenquanhuyen,
+                        'xaphuong' => $valueXP->tenxaphuong,
+                        'all' => "$valueTT->tentinhthanh - $valueQH->tenquanhuyen - $valueXP->tenxaphuong"
+                    ];
+                }
+            }
+        }
+        //dd($diachis[0]['all']);
+
+        return view('backend.diaDiem.create')
+            ->with('diachis', $diachis);
     }
 
     /**
@@ -75,6 +98,16 @@ class DiaDiemController extends Controller
             'GPS'
         );
         $inputs['trangthai'] = $request->has('trangthai') ? '1' : '0';
+
+        // $strTinhThanh = $request->input('slTinhThanh');
+        // $arrTinhThanh = explode("-", $strTinhThanh);
+        // $inputs['diachi'] = new DiaChi([
+        //     'tendiachi' => $request->input('tendiachi'),
+        //     'tinhthanh' => isset($arrTinhThanh[0]) ? $arrTinhThanh[0] : '',
+        //     'quanhuyen' => isset($arrTinhThanh[1]) ? $arrTinhThanh[0] : '',
+        //     'xaphuong' => isset($arrTinhThanh[2]) ? $arrTinhThanh[0] : '',
+        // ]);
+
         $inputs['diachi'] = new DiaChi([
             'tendiachi' => $request->input('tendiachi'),
             'tinhthanh' => $request->input('tinhthanh'),

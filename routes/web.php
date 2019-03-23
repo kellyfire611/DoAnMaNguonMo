@@ -7,6 +7,12 @@ use App\Http\Controllers\LanguageController;
  * Routes that are used between both frontend and backend.
  */
 
+ Route::get('test', function() {
+    $str = "Cần Thơ - Bình Thủy";
+    $arr = explode("-", $str);
+    dd($arr);
+ });
+
 // Switch between the included languages
 Route::get('lang/{lang}', [LanguageController::class, 'swap']);
 

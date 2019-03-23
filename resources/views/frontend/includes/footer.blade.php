@@ -31,7 +31,7 @@
 
 									  <form class="navbar-form" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get">
 									    <div class="input-group add-on">
-									      	<input class="form-control" name="EMAIL" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required="" type="email">
+									      	<input class="form-control" name="EMAIL" placeholder="Địa chỉ email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required="" type="email">
 											<div style="position: absolute; left: -5000px;">
 												<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
 											</div>

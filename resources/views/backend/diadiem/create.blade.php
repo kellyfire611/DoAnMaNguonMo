@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('title', __('labels.backend.diadiem.management') . ' | ' . __('labels.backend.diadiem.create'))
+@section('title', 'Quản lý Địa điểm' . ' | ' . 'Thêm mới')
 
 @section('breadcrumb-links')
     @include('backend.diadiem.includes.breadcrumb-links')
@@ -54,7 +54,7 @@
                                         <input id="anhdaidien-file" name="anhdaidien_file" type="file" required>
                                     </div>
                                 </div>
-                                <div class="kv-avatar-hint"><small>Select file < 1500 KB</small></div>
+                                <div class="kv-avatar-hint"><small>Chọn file có kích cỡ < 1500 KB</small></div>
                                 <div id="kv-avatar-errors-anhdaidien-file" class="center-block" style="display:none"></div>
                             </div>
                         </div><!--form-group-->
@@ -69,6 +69,19 @@
                                     ->required() }}
                             </div><!--col-->
                         </div><!--form-group-->
+
+                        <div class="form-group row">
+                            {{ html()->label('Tỉnh thành')->class('col-md-2 form-control-label')->for('tinhthanh') }}
+                            <div class="col-md-10">
+                                <select name="slTinhThanh" class="form-control">
+                                @foreach($diachis as $diachi)
+                                <option value="{{ $diachi['all'] }}">{{ $diachi['all'] }}</option>
+                                @endforeach
+                                </select>
+                            </div><!--col-->
+                        </div><!--form-group-->
+
+
                         <div class="form-group row">
                             {{ html()->label('Tỉnh thành')->class('col-md-2 form-control-label')->for('tinhthanh') }}
                             <div class="col-md-10">
@@ -204,7 +217,7 @@
                                         <input id="dichvu-anhdaidien-file-0" name="dichvu_anhdaidien_file[]" type="file" required>
                                     </div>
                                 </div>
-                                <div class="kv-avatar-hint"><small>Select file < 1500 KB</small></div>
+                                <div class="kv-avatar-hint"><small>Chọn file có kích cỡ < 1500 KB</small></div>
                                 <div id="kv-avatar-errors-dichvu-anhdaidien-file" class="center-block" style="display:none"></div>
                             </div><!-- col -->
                             <div class="col">
@@ -313,6 +326,7 @@
             },
             theme: 'snow'
         });
+        editor.container.style.height = '300px';
         $('.quill-form').submit(function () {
             var gioithieu = document.querySelector('input[name=gioithieu]');
             gioithieu.value = editor.root.innerHTML;

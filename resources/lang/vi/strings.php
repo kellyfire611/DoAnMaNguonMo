@@ -31,7 +31,7 @@ return [
 
         'general' => [
             'all_rights_reserved' => 'All Rights Reserved.',
-            'are_you_sure'        => 'Are you sure you want to do this?',
+            'are_you_sure'        => 'Bạn có chắc chắn thực hiện thao tác này?',
             'boilerplate_link'    => 'Laravel 5 Boilerplate',
             'continue'            => 'Continue',
             'member_since'        => 'Member since',

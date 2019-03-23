@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use App\Models\QuanHuyen;
 
 /**
  * Class TinhThanh.
@@ -71,5 +72,10 @@ class TinhThanh extends Eloquent
 			</div>
 		  </div>
 		</div>';
+    }
+
+    public function quanhuyens()
+    {
+      return $this->embedsMany(QuanHuyen::class);
     }
 }

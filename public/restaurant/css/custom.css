@@ -1,5 +1,5 @@
 .img-table-dichvu {
-    width: 150px;
+    max-width: 150px;
 }
 
 body {
@@ -8,4 +8,15 @@ body {
 
 footer p {
     color: rgba(255, 255, 255, 0.50);
+}
+
+.generic-banner .generic-banner-content h2 {
+    font-size: 4em;
+    text-shadow: 2px 2px 5px black;
+    background: rgba(199, 8, 10, 1);
+}
+
+.generic-banner .generic-banner-content p {
+    font-size: 1.2em;
+    text-shadow: 2px 2px 5px black;
 }

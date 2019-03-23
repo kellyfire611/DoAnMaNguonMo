@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('title', __('labels.backend.diadiem.management') . ' | ' . __('labels.backend.diadiem.edit'))
+@section('title', 'Quản lý Địa điểm' . ' | ' . 'Sửa')
 
 @section('breadcrumb-links')
     @include('backend.diadiem.includes.breadcrumb-links')

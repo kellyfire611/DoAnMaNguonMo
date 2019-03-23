@@ -55,7 +55,7 @@
 				<div class="container">
 					<div class="row justify-content-center align-items-center flex-column">
 						<a class="play-btn" href="https://www.youtube.com/watch?v=MflT0I7ZPCs">
-							<img src="img/play-btn.png" alt="">
+							<img src="{{ asset('restaurant/img/play-btn.png') }}" alt="">
 						</a>
 						<h3 class="pt-20 pb-20 text-white">Chúng tôi luôn cố gắng cung cấp các Địa điểm Ẩm thực với các món ăn tuyệt hảo nhất</h3>
 						<p class="text-white">Click vào để xem video Ẩm thực cực bắt mắt</p>
@@ -71,28 +71,28 @@
 					<div class="feature-section">
 						<div class="row">
 							<div class="single-feature col-lg-3 col-md-6">
-								<img src="img/f1.png" alt="">
+								<img src="{{ asset('restaurant/img/f1.png') }}" alt="">
 								<h4 class="pt-20 pb-20">Bữa sáng NGON LÀNH</h4>
 								<p>
 									Nạp đầy năng lượng cho buổi sáng làm việc!
 								</p>
 							</div>
 							<div class="single-feature col-lg-3 col-md-6">
-								<img src="img/f2.png" alt="">
+								<img src="{{ asset('restaurant/img/f2.png') }}" alt="">
 								<h4 class="pt-20 pb-20">Bữa trưa TUYỆT HẢO</h4>
 								<p>
 									Thưởng thức bữa trưa văn phòng ấm áp cùng Đồng nghiệp!
 								</p>
 							</div>
 							<div class="single-feature col-lg-3 col-md-6">
-								<img src="img/f3.png" alt="">
+								<img src="{{ asset('restaurant/img/f3.png') }}" alt="">
 								<h4 class="pt-20 pb-20">Bữa tối NGỌT NGÀO</h4>
 								<p>
 									Lãng mạn, tinh tế cho cặp đôi.
 								</p>
 							</div>
 							<div class="single-feature col-lg-3 col-md-6">
-								<img src="img/f4.png" alt="">
+								<img src="{{ asset('restaurant/img/f4.png') }}" alt="">
 								<h4 class="pt-20 pb-20">CHẤT LƯỢNG ĐỈNH CAO</h4>
 								<p>
 									Sống là để hưởng thụ, ăn, uống chất lượng!!!
@@ -155,7 +155,7 @@
 					<div class="row justify-content-center d-flex align-items-center">
 						<div class="col-md-3 single-team">
 						    <div class="thumb">
-						        <img class="img-fluid" src="img/t1.jpg" alt="">
+						        <img class="img-fluid" src="{{ asset('restaurant/img/t1.jpg') }}" alt="">
 						        <div class="align-items-center justify-content-center d-flex">
 									<a href="#"><i class="fa fa-facebook"></i></a>
 									<a href="#"><i class="fa fa-twitter"></i></a>
@@ -169,7 +169,7 @@
 						</div>
 						<div class="col-md-3 single-team">
 						    <div class="thumb">
-						        <img class="img-fluid" src="img/t2.jpg" alt="">
+						        <img class="img-fluid" src="{{ asset('restaurant/img/t2.jpg') }}" alt="">
 						        <div class="align-items-center justify-content-center d-flex">
 									<a href="#"><i class="fa fa-facebook"></i></a>
 									<a href="#"><i class="fa fa-twitter"></i></a>
@@ -183,7 +183,7 @@
 						</div>	
 						<div class="col-md-3 single-team">
 						    <div class="thumb">
-						        <img class="img-fluid" src="img/t3.jpg" alt="">
+						        <img class="img-fluid" src="{{ asset('restaurant/img/t3.jpg') }}" alt="">
 						        <div class="align-items-center justify-content-center d-flex">
 									<a href="#"><i class="fa fa-facebook"></i></a>
 									<a href="#"><i class="fa fa-twitter"></i></a>
@@ -197,7 +197,7 @@
 						</div>	
 						<div class="col-md-3 single-team">
 						    <div class="thumb">
-						        <img class="img-fluid" src="img/t4.jpg" alt="">
+						        <img class="img-fluid" src="{{ asset('restaurant/img/t4.jpg') }}" alt="">
 						        <div class="align-items-center justify-content-center d-flex">
 									<a href="#"><i class="fa fa-facebook"></i></a>
 									<a href="#"><i class="fa fa-twitter"></i></a>
@@ -219,8 +219,7 @@
 				<div class="container-fluid">
 					<div class="row align-items-center d-flex justify-content-start">
 						<div class="col-lg-6 col-md-12 contact-left no-padding">
-	      					<div style=" width:100%;
-	                height: 545px;" id="map"></div>
+	      					<div style=" width:100%;height: 545px;" id="map"></div>
 						</div>
 						<div class="col-lg-4 col-md-12 pt-100 pb-100">
 							<form class="form-area" id="myForm" action="" method="post" class="contact-form text-right">

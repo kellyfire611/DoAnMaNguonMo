@@ -2,6 +2,19 @@
 
 @section('title', app_name() . ' | ' . __('navs.general.home'))
 
+@push('after-styles')
+<style>
+  #map {
+    height: 100%;
+  }
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+</style>
+@endpush
+
 @section('content')
 <!-- Start banner Area -->
 <section class="generic-banner relative" style="background: url('{{ asset('storage/'.$diadiem->anhdaidien) }}'); background-position: center; background-repeat: no-repeat; background-size: cover;">						
@@ -70,5 +83,26 @@
         </div>
     </div>
 </div>
+
+<section class="sample-text-area">
+    <div class="container">
+        <div id="map"></div>
+    </div>
+</section>
+
 <!-- End Align Area -->
 @endsection
+
+@push('after-scripts')
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_Fsi_VyLE_uW_TvspHPm8KKgWDHTiteU&callback=initMap" async defer></script>
+<script>
+    var map;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: -34.397, lng: 150.644},
+            zoom: 8
+        });
+    }
+</script>
+
+@endpush
