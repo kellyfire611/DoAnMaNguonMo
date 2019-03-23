@@ -87,6 +87,14 @@ footer p {
 .section-gap {
     padding: 20px 0;
 }
+
+.section-top-border {
+    padding: 10px 0;
+}
+
+.sample-text-area {
+    padding: 20px 0;
+}
 /* 
 .owl-stage {
     display: -webkit-flex;

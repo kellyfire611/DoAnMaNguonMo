@@ -42,15 +42,15 @@
 <div class="whole-wrap">
     <div class="container">
     <div class="section-top-border">
-    <h3 class="mb-30">Danh sách dịch vụ</h3>
+    <h3 class="mb-10">Danh sách dịch vụ</h3>
     <div class="table-responsive">  
         <table class="table table-bordered" id="dynamic_field">
             <tr>
-                <td>#</td>
-                <td>Ảnh đại diện</td>
-                <td>Tên dịch vụ</td>
-                <td>Mô tả ngắn</td>
-                <td>Giá tiền</td>
+                <th style="width: 35px;">#</th>
+                <th style="width: 175px;">Ảnh đại diện</th>
+                <th>Tên dịch vụ</th>
+                <th>Mô tả ngắn</th>
+                <th style="width: 100px;">Giá tiền</th>
             </tr>
             <?php
             $i = 1;
@@ -61,7 +61,7 @@
                 <td><img class="img-thumbnail img-table-dichvu" src="{{ asset('storage/'.$dichvu->anhdaidien) }}" alt="{{ $dichvu->tendichvu }}"></td>
                 <td>{{ $dichvu->tendichvu }}</td>
                 <td>{{ $dichvu->motangan }}</div>
-                <td>{{ $dichvu->gia }}</div>
+                <td style="text-align: right;">{{ $dichvu->gia }}</div>
             </tr>
             <?php
             $i++;

@@ -4,10 +4,12 @@
 
 @section('content')
 @if(!$page)
-no
+<div class="container">
+<h1>Không tìm thấy trang!</h1>
+</div>
 @else
 <!-- Start banner Area -->
-<section class="generic-banner relative" style="background: url(''); background-position: center; background-repeat: no-repeat; background-size: cover;">						
+<section class="generic-banner relative" style="background: url('{{ asset('restaurant/img/header-bg-food-1.jpg') }}'); background-position: center; background-repeat: no-repeat; background-size: cover;">						
     <div class="container">
         <div class="row height align-items-center justify-content-center">
             <div class="col-lg-10">
