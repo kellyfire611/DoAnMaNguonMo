@@ -4,12 +4,22 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\TinhThanhController;
 use App\Http\Controllers\Backend\TimKiemController;
 use App\Http\Controllers\Backend\DiaDiemController;
+use App\Http\Controllers\Backend\PageController;
 
 /*
  * All route names are prefixed with 'admin.'.
  */
 Route::redirect('/', '/admin/dashboard', 301);
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+// Route Page
+Route::get('pages', [PageController::class, 'index'])->name('pages.index');
+Route::get('pages/create', [PageController::class, 'create'])->name('pages.create');
+Route::post('pages', [PageController::class, 'store'])->name('pages.store');
+Route::get('pages/{pages}/', [PageController::class, 'show'])->name('pages.show');
+Route::get('pages/{pages}/edit', [PageController::class, 'edit'])->name('pages.edit');
+Route::patch('pages/{pages}/', [PageController::class, 'update'])->name('pages.update');
+Route::delete('pages/{pages}/', [PageController::class, 'destroy'])->name('pages.destroy');
 
 // Route Tỉnh thành
 Route::get('tinhthanh', [TinhThanhController::class, 'index'])->name('tinhthanh.index');

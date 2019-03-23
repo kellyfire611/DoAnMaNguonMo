@@ -57,6 +57,13 @@
 
                 <ul class="nav-dropdown-items">
                     <li class="nav-item">
+                        <a class="nav-link {{ active_class(Active::checkUriPattern('admin/pages')) }}" href="{{ route('admin.pages.index') }}">
+                            Danh mục Trang
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
                         <a class="nav-link {{ active_class(Active::checkUriPattern('admin/tinhthanh')) }}" href="{{ route('admin.tinhthanh.index') }}">
                             Danh mục Tỉnh thành
                         </a>

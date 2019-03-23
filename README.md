@@ -11,7 +11,7 @@
     - Có Quản lý luôn phần Đa phương tiện (Media, Upload, Download...)
     - Hỗ trợ Đa ngôn ngữ (do mình làm trang Quản bá Du lịch, nên cần Đa ngôn ngữ Anh Việt, ...)
 
-- Chức năng cho phép Đăng Quảng cáo
+- Chức năng cho phép Đăng Quảng cáo (theo kiểu banner)
 - Chức năng Tìm kiếm
 
 # Cách chạy source

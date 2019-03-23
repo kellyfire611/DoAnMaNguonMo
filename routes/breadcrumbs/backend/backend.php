@@ -7,6 +7,32 @@ Breadcrumbs::for('admin.dashboard', function ($trail) {
 require __DIR__.'/auth.php';
 require __DIR__.'/log-viewer.php';
 
+// Page
+Breadcrumbs::for('admin.pages.index', function ($trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Trang', route('admin.pages.index'));
+});
+
+Breadcrumbs::for('admin.pages.deleted', function ($trail) {
+    $trail->parent('admin.pages.index');
+    $trail->push('Trang đã xóa', route('admin.pages.deleted'));
+});
+
+Breadcrumbs::for('admin.pages.create', function ($trail) {
+    $trail->parent('admin.pages.index');
+    $trail->push('Thêm mới Trang', route('admin.pages.create'));
+});
+
+Breadcrumbs::for('admin.pages.show', function ($trail, $id) {
+    $trail->parent('admin.pages.index');
+    $trail->push('Xem Trang', route('admin.pages.show', $id));
+});
+
+Breadcrumbs::for('admin.pages.edit', function ($trail, $id) {
+    $trail->parent('admin.pages.index');
+    $trail->push('Sửa Trang', route('admin.pages.edit', $id));
+});
+
 // Tỉnh thành
 Breadcrumbs::for('admin.tinhthanh.index', function ($trail) {
     $trail->parent('admin.dashboard');

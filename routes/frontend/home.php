@@ -17,8 +17,7 @@ Route::get('contact', [ContactController::class, 'index'])->name('contact');
 Route::post('contact/send', [ContactController::class, 'send'])->name('contact.send');
 
 // Pages
-Route::get('gioithieu', [PageController::class, 'gioithieu'])->name('pages.gioithieu');
-Route::get('quangcao', [PageController::class, 'quangcao'])->name('pages.quangcao');
+Route::get('pages/{slug}', [PageController::class, 'show'])->name('pages.show');
 
 // Địa điểm
 Route::get('/diadiem', [DiaDiemController::class, 'index'])->name('diadiem.index');
