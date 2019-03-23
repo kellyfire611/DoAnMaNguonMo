@@ -4,6 +4,7 @@ namespace App\Repositories\Backend;
 
 use App\Models\DiaDiem;
 use App\Models\DichVu;
+use App\Models\DiaChi;
 use Illuminate\Support\Facades\DB;
 use App\Exceptions\GeneralException;
 use App\Repositories\BaseRepository;
@@ -77,6 +78,8 @@ class DiaDiemRepository extends BaseRepository
             'GPS' => $data['GPS'],
             'trangthai' => $data['trangthai']
         ]);
+        
+        $DiaDiem->diachi()->save($data['diachi']);
 
         foreach($data['dichvus'] as $key=>$value)
         {
@@ -114,6 +117,8 @@ class DiaDiemRepository extends BaseRepository
             'GPS' => $data['GPS'],
             'trangthai' => $data['trangthai']
         ])) {
+            
+            $DiaDiem->diachi()->save($data['diachi']);
             
             foreach($DiaDiem->dichvus as $key=>$value)
             {

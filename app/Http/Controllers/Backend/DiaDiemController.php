@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Models\DiaDiem;
 use App\Models\DichVu;
+use App\Models\DiaChi;
 use App\Http\Controllers\Controller;
 use App\Repositories\Backend\DiaDiemRepository;
 use App\Http\Requests\Backend\DiaDiem\StoreDiaDiemRequest;
@@ -74,6 +75,12 @@ class DiaDiemController extends Controller
             'GPS'
         );
         $inputs['trangthai'] = $request->has('trangthai') ? '1' : '0';
+        $inputs['diachi'] = new DiaChi([
+            'tendiachi' => $request->input('tendiachi'),
+            'tinhthanh' => $request->input('tinhthanh'),
+            'quanhuyen' => $request->input('quanhuyen'),
+            'xaphuong' => $request->input('xaphuong'),
+        ]);
 
         $anhdaidien_file;
         if($request->hasFile('anhdaidien_file'))
@@ -177,6 +184,12 @@ class DiaDiemController extends Controller
             'GPS'
         );
         $inputs['trangthai'] = $request->has('trangthai') ? '1' : '0';
+        $inputs['diachi'] = new DiaChi([
+            'tendiachi' => $request->input('tendiachi'),
+            'tinhthanh' => $request->input('tinhthanh'),
+            'quanhuyen' => $request->input('quanhuyen'),
+            'xaphuong' => $request->input('xaphuong'),
+        ]);
         
         $anhdaidien_file;
         if($request->hasFile('anhdaidien_file'))

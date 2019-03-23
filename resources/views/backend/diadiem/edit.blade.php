@@ -65,6 +65,31 @@
                                 <div id="kv-avatar-errors-anhdaidien-file" class="center-block" style="display:none"></div>
                             </div>
                         </div><!--form-group-->
+
+                        <div class="form-group row">
+                            {{ html()->label('Địa chỉ')->class('col-md-2 form-control-label')->for('tendiachi') }}
+                            <div class="col-md-10">
+                                <input class="form-control" type="text" name="tendiachi" id="tendiachi" value="{{ old('tendiachi', $diadiem->diachi->tendiachi) }}" placeholder="Địa chỉ" maxlength="191" required="">
+                            </div><!--col-->
+                        </div><!--form-group-->
+                        <div class="form-group row">
+                            {{ html()->label('Tỉnh thành')->class('col-md-2 form-control-label')->for('tinhthanh') }}
+                            <div class="col-md-10">
+                            <input class="form-control" type="text" name="tinhthanh" id="tinhthanh" value="{{ old('tinhthanh', $diadiem->diachi->tinhthanh) }}" placeholder="Tỉnh thành" maxlength="191" required="">
+                            </div><!--col-->
+                        </div><!--form-group-->
+                        <div class="form-group row">
+                            {{ html()->label('Quận huyện')->class('col-md-2 form-control-label')->for('quanhuyen') }}
+                            <div class="col-md-10">
+                                <input class="form-control" type="text" name="quanhuyen" id="quanhuyen" value="{{ old('quanhuyen', $diadiem->diachi->quanhuyen) }}" placeholder="Quận huyện" maxlength="191" required="">
+                            </div><!--col-->
+                        </div><!--form-group-->
+                        <div class="form-group row">
+                            {{ html()->label('Xã phường')->class('col-md-2 form-control-label')->for('xaphuong') }}
+                            <div class="col-md-10">
+                                <input class="form-control" type="text" name="xaphuong" id="xaphuong" value="{{ old('xaphuong', $diadiem->diachi->xaphuong) }}" placeholder="Xã phường" maxlength="191" required="">
+                            </div><!--col-->
+                        </div><!--form-group-->
                         
                         <div class="form-group row">
                             {{ html()->label('Từ khóa')->class('col-md-2 form-control-label')->for('tukhoa') }}

@@ -58,6 +58,47 @@
                                 <div id="kv-avatar-errors-anhdaidien-file" class="center-block" style="display:none"></div>
                             </div>
                         </div><!--form-group-->
+
+                        <div class="form-group row">
+                            {{ html()->label('Địa chỉ')->class('col-md-2 form-control-label')->for('tendiachi') }}
+                            <div class="col-md-10">
+                                {{ html()->text('tendiachi')
+                                    ->class('form-control')
+                                    ->placeholder('Địa chỉ')
+                                    ->attribute('maxlength', 191)
+                                    ->required() }}
+                            </div><!--col-->
+                        </div><!--form-group-->
+                        <div class="form-group row">
+                            {{ html()->label('Tỉnh thành')->class('col-md-2 form-control-label')->for('tinhthanh') }}
+                            <div class="col-md-10">
+                                {{ html()->text('tinhthanh')
+                                    ->class('form-control')
+                                    ->placeholder('Tỉnh thành')
+                                    ->attribute('maxlength', 191)
+                                    ->required() }}
+                            </div><!--col-->
+                        </div><!--form-group-->
+                        <div class="form-group row">
+                            {{ html()->label('Quận huyện')->class('col-md-2 form-control-label')->for('quanhuyen') }}
+                            <div class="col-md-10">
+                                {{ html()->text('quanhuyen')
+                                    ->class('form-control')
+                                    ->placeholder('Quận huyện')
+                                    ->attribute('maxlength', 191)
+                                    ->required() }}
+                            </div><!--col-->
+                        </div><!--form-group-->
+                        <div class="form-group row">
+                            {{ html()->label('Xã phường')->class('col-md-2 form-control-label')->for('xaphuong') }}
+                            <div class="col-md-10">
+                                {{ html()->text('xaphuong')
+                                    ->class('form-control')
+                                    ->placeholder('Xã phường')
+                                    ->attribute('maxlength', 191)
+                                    ->required() }}
+                            </div><!--col-->
+                        </div><!--form-group-->
                         
                         <div class="form-group row">
                             {{ html()->label('Từ khóa')->class('col-md-2 form-control-label')->for('tukhoa') }}
