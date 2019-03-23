@@ -61,21 +61,10 @@ class DiaDiemController extends Controller
      */
     public function store(StoreDiaDiemRequest $request)
     {
-        $dichvus = [];
-        foreach($request->input('dichvu_tendichvu') as $key => $value) {
-            $dichvus[] = new DichVu([
-                'tendichvu' => $request->input('dichvu_tendichvu')[$key], 
-                'motangan' => $request->input('dichvu_motangan')[$key], 
-                'anhdaidien' => $request->input('dichvu_anhdaidien')[$key], 
-                'gioithieu' => $request->input('dichvu_gioithieu')[$key], 
-                'gia' => $request->input('dichvu_gia')[$key],
-            ]);
-        }
-
+        // dd($request);
         $inputs = $request->only(
             'tendiadiem',
             'motangan',
-            'anhdaidien',
             'gioithieu',
             'tukhoa',
             'dienthoai',
@@ -85,17 +74,50 @@ class DiaDiemController extends Controller
             'GPS'
         );
         $inputs['trangthai'] = $request->has('trangthai') ? '1' : '0';
-        $inputs['dichvus'] = $dichvus;
 
-        // if($request->hasFile('sp_hinh'))
-        // {
-        //     $file = $request->sp_hinh;
-        //     // Lưu tên hình vào column sp_hinh
-        //     $sp->sp_hinh = $file->getClientOriginalName();
+        $anhdaidien_file;
+        if($request->hasFile('anhdaidien_file'))
+        {
+            $upload_dir = 'uploads/img/' . date("Y") . '/' . date("m") . "/";
+            $file     = $request->anhdaidien_file;
+            $fileName = rand(1, 999) . $file->getClientOriginalName();
+            $filePath = $upload_dir  . $fileName;
             
-        //     // Chép file vào thư mục "photos"
-        //     $fileSaved = $file->storeAs('public/photos', $sp->sp_hinh);
-        // }
+            $file->storeAs('public/' . $upload_dir, $fileName);
+            $inputs['anhdaidien'] = $filePath;
+        }
+        else
+        {
+            $inputs['anhdaidien'] = null;
+        }
+
+        // Dịch vụ
+        $dichvus = [];
+        foreach($request->input('dichvu_tendichvu') as $key => $value) {
+            $dv = new DichVu([
+                'tendichvu' => $request->input('dichvu_tendichvu')[$key], 
+                'motangan' => $request->input('dichvu_motangan')[$key], 
+                'gioithieu' => $request->input('dichvu_gioithieu')[$key], 
+                'gia' => $request->input('dichvu_gia')[$key],
+            ]);
+
+            $dichvu_anhdaidien_file;
+            if($request->hasFile('dichvu_anhdaidien_file') && isset($request->dichvu_anhdaidien_file[$key])) {
+                $upload_dir = 'uploads/img/' . date("Y") . '/' . date("m") . "/";
+                $file     = $request->dichvu_anhdaidien_file[$key];
+                $fileName = rand(1, 999) . $file->getClientOriginalName();
+                $filePath = $upload_dir  . $fileName;
+
+                $file->storeAs('public/' . $upload_dir, $fileName);
+                $dv->anhdaidien = $filePath;
+            }
+            else
+            {
+                //$dv->anhdaidien
+            }
+            $dichvus[] = $dv;
+        }
+        $inputs['dichvus'] = $dichvus;
 
         $this->DiaDiemRepository->create($inputs);
 
@@ -140,7 +162,7 @@ class DiaDiemController extends Controller
      */
     public function update(UpdateDiaDiemRequest $request, $_id)
     {
-        dd($request);
+        // dd($request);
         // Địa điểm
         $DiaDiem = DiaDiem::find($_id);
         $inputs = $request->only(

@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    {{ html()->form('POST', route('admin.diadiem.store'))->class('form-horizontal quill-form')->open() }}
+    {{ html()->form('POST', route('admin.diadiem.store'))->class('form-horizontal quill-form')->acceptsFiles()->open() }}
         <div class="card">
             <div class="card-body">
                 <div class="row">
@@ -49,12 +49,14 @@
                         <div class="form-group row">
                             {{ html()->label('Ảnh đại diện')->class('col-md-2 form-control-label')->for('anhdaidien') }}
                             <div class="col-md-10">
-                                {{ html()->text('anhdaidien')
-                                    ->class('form-control')
-                                    ->placeholder('Ảnh đại diện')
-                                    ->attribute('maxlength', 191)
-                                    ->required() }}
-                            </div><!--col-->
+                                <div class="kv-avatar text-center">
+                                    <div class="file-loading">
+                                        <input id="anhdaidien-file" name="anhdaidien_file" type="file" required>
+                                    </div>
+                                </div>
+                                <div class="kv-avatar-hint"><small>Select file < 1500 KB</small></div>
+                                <div id="kv-avatar-errors-anhdaidien-file" class="center-block" style="display:none"></div>
+                            </div>
                         </div><!--form-group-->
                         
                         <div class="form-group row">
@@ -126,11 +128,7 @@
                         <div class="form-group row">
                             {{ html()->label('Duyệt')->class('col-md-2 form-control-label')->for('trangthai') }}
                             <div class="col-md-10">
-                                @if($diadiem->trangthai == '1')
-                                <input type="checkbox" name="trangthai" value="1" checked />
-                                @else
-                                <input type="checkbox" name="trangthai" value="0" />
-                                @endif
+                                <input type="checkbox" name="trangthai" />
                             </div><!--col-->
                         </div><!--form-group-->
 
@@ -154,30 +152,46 @@
 
                 <hr>
 
+                <div id="dynamic_field">
+                <input type="hidden" name="dichvu_chitiet_deleted" />
                 <div class="row mt-4 mb-4">
-                    <div class="col">
-                        <div class="table-responsive">  
-                            <table class="table table-bordered" id="dynamic_field">
-                                <tr>
-                                    <td>
-                                        <table class="table table-bordered">
-                                            <tr>  
-                                                <td><input type="text" name="dichvu_anhdaidien[]" placeholder="Ảnh đại diện" class="form-control" /></td>  
-                                                <td><input type="text" name="dichvu_tendichvu[]" placeholder="Tên dịch vụ" class="form-control" /></td>  
-                                                <td><input type="text" name="dichvu_motangan[]" placeholder="Mô tả ngắn" class="form-control" /></td>  
-                                                <td><input type="text" name="dichvu_gia[]" placeholder="Giá" class="form-control" /></td>  
-                                                <td><button type="button" name="add" id="add" class="btn btn-success">+</button></td>  
-                                            </tr>
-                                            <tr>
-                                                <td colspan="5"><input type="text" name="dichvu_gioithieu[]" placeholder="Giới thiệu" class="form-control" /></td>  
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>  
-                        </div>
-                    </div>
+                    <div id="dynamic-row" class="col">
+                        <div class="row border-bottom">
+                            <div class="col col-md-3 text-center">
+                                <div class="kv-avatar text-center">
+                                    <div class="file-loading">
+                                        <input id="dichvu-anhdaidien-file-0" name="dichvu_anhdaidien_file[]" type="file" required>
+                                    </div>
+                                </div>
+                                <div class="kv-avatar-hint"><small>Select file < 1500 KB</small></div>
+                                <div id="kv-avatar-errors-dichvu-anhdaidien-file" class="center-block" style="display:none"></div>
+                            </div><!-- col -->
+                            <div class="col">
+                                <div class="form-group row">
+                                    <div class="col">
+                                        <input type="text" name="dichvu_tendichvu[]" id="dichvu-tendichvu-0" placeholder="Tên dịch vụ" class="form-control" />
+                                    </div><!--col-->
+                                    <div class="col">
+                                        <input type="text" name="dichvu_motangan[]" id="dichvu-motangan-0" placeholder="Mô tả ngắn" class="form-control" />
+                                    </div><!--col-->
+                                    <div class="col">
+                                        <input type="text" name="dichvu_gia[]" id="dichvu-gia-0" placeholder="Giá" class="form-control input-element-number number" />
+                                    </div><!--col-->
+                                    <div class="col col-md-auto">
+                                        <button type="button" name="add" id="add" class="btn btn-success">+</button>
+                                    </div>
+                                </div><!--form-group-->
+
+                                <div class="form-group row">
+                                    <div class="col">
+                                        <input type="text" name="dichvu_gioithieu[]" id="dichvu-gioithieu-0" placeholder="Giới thiệu" class="form-control" />
+                                    </div><!--col-->
+                                </div><!--form-group-->
+                            </div><!-- col -->
+                        </div><!-- row -->
+                    </div><!-- col -->
                 </div>
+            </div>
             </div><!--card-body-->
 
             <div class="card-footer clearfix">
@@ -193,6 +207,10 @@
             </div><!--card-footer-->
         </div><!--card-->
     {{ html()->form()->close() }}
+
+<!-- dynamic row template -->
+@include('backend.diadiem.includes.dynamic-row-template')
+
 @endsection
 
 @push('after-scripts')
@@ -262,15 +280,60 @@
         //Dynamic field
         var i=1;  
         $('#add').click(function(){  
-            i++;  
-            //$('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"><td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
-            $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"> <td> <table class="table table-bordered"> <tr>  <td><input type="text" name="dichvu_anhdaidien[]" placeholder="Ảnh đại diện" class="form-control" /></td>  <td><input type="text" name="dichvu_tendichvu[]" placeholder="Tên dịch vụ" class="form-control" /></td>  <td><input type="text" name="dichvu_motangan[]" placeholder="Mô tả ngắn" class="form-control" /></td>  <td><input type="text" name="dichvu_gia[]" placeholder="Giá" class="form-control" /></td>  <td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td>  </tr> <tr> <td colspan="5"><input type="text" name="dichvu_gioithieu[]" placeholder="Giới thiệu" class="form-control" /></td>  </tr> </table> </td> </tr>');  
+            var dichvuRowTemplate = document.getElementById("dichvu-row-template").innerHTML;
+            var templateFn = _.template(dichvuRowTemplate);
+            var templateHTML = templateFn({
+                'index': i,
+                'tendichvu': null,
+                'motangan': null,
+                'gia': null,
+                'gioithieu': null
+            });
+            $('#dynamic_field').append(templateHTML);
+
+            // Dịch vụ Ảnh đại diện
+            $(`#dichvu-anhdaidien-file-${i}`).fileinput(anhdaidien_file_options);
+
+            i++;
         });  
 
         $(document).on('click', '.btn_remove', function(){  
             var button_id = $(this).attr("id");   
-            $('#row'+button_id+'').remove();  
+            $('#dynamic-row-'+button_id+'').remove();  
         });  
+
+        $(document).on('click', '#add', function(){
+            $('.input-element-number').each((i, el) => {
+                // var cleave = new Cleave(el, {
+                //     numeral: true,
+                //     numeralThousandsGroupStyle: 'thousand'
+                // });
+                $(el).cleave({ numeral: true, numeralThousandsGroupStyle: 'thousand', autoUnmask: true});
+            });
+        });
+
+        var defaultImg = "{{ asset('img/'.'default-image-450x450.png') }}";
+        var anhdaidien_file_options = {
+            theme: 'fas',
+            overwriteInitial: true,
+            maxFileSize: 1500,
+            showClose: true,
+            showUpload: false,
+            showCaption: true,
+            //showBrowse: false,
+            //browseOnZoneClick: true,
+            removeLabel: '',
+            removeTitle: 'Cancel or reset changes',
+            elErrorContainer: '#kv-avatar-errors-anhdaidien-file',
+            msgErrorClass: 'alert alert-block alert-danger',
+            defaultPreviewContent: '<img src="'+defaultImg+'" alt="No image" style="width:auto;height:auto;max-width:100%;max-height:100%;"><h6 class="text-muted">Click để chọn ảnh</h6>',
+            //layoutTemplates: {main2: '{preview} {remove}'},
+            allowedFileExtensions: ["jpg", "png", "gif"],
+        };
+        $("#anhdaidien-file").fileinput(anhdaidien_file_options);
+
+        // Dịch vụ Ảnh đại diện
+        $(`#dichvu-anhdaidien-file-0`).fileinput(anhdaidien_file_options);
 });
 </script>
 @endpush

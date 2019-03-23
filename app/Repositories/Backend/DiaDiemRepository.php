@@ -63,6 +63,7 @@ class DiaDiemRepository extends BaseRepository
      */
     public function create(array $data) : DiaDiem
     {
+        // dd($data);
         $DiaDiem = parent::create([
             'tendiadiem' => $data['tendiadiem'],
             'motangan' => $data['motangan'],

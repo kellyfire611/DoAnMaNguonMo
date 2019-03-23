@@ -163,6 +163,7 @@
             </div><!--row-->
 
             <div id="dynamic_field">
+                <input type="hidden" name="dichvu_chitiet_deleted" />
                 <div class="row mt-4 mb-4">
                     <?php
                     $i = 0;
