@@ -81,28 +81,32 @@
                 @endforeach
             </div>
         </div>
+
+        <div class="section-top-border">
+            <h3>Địa chỉ</h3>
+            <div class="row">
+                <div class="col">
+                    <div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q={{ $diadiem->GPS }}&t=&z=17&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>NenTang: <a href="https://nentang.vn">nentang.vn</a></div><style>.mapouter{position:relative;text-align:right;height:500px;width:100%;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:100%;}</style></div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-top-border">
+            <h3>Đánh giá</h3>
+            <div class="row">
+                <div class="col">
+                    Danh sách các đánh giá
+                </div>
+            </div>
+        </section>
     </div>
 </div>
 
-<section class="sample-text-area">
-    <div class="container">
-        <div id="map"></div>
-    </div>
-</section>
+
 
 <!-- End Align Area -->
 @endsection
 
 @push('after-scripts')
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_Fsi_VyLE_uW_TvspHPm8KKgWDHTiteU&callback=initMap" async defer></script>
-<script>
-    var map;
-    function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: -34.397, lng: 150.644},
-            zoom: 8
-        });
-    }
-</script>
 
 @endpush

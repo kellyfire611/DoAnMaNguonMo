@@ -225,7 +225,7 @@
 				<div class="container-fluid">
 					<div class="row align-items-center d-flex justify-content-start">
 						<div class="col-lg-6 col-md-12 contact-left no-padding">
-	      					<div style=" width:100%;height: 545px;" id="map"></div>
+							<div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=Khu%202%20%C4%91%E1%BA%A1i%20h%E1%BB%8Dc%20c%E1%BA%A7n%20th%C6%A1&t=&z=17&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>NenTang: <a href="https://nentang.vn">nentang.vn</a></div><style>.mapouter{position:relative;text-align:right;height:500px;width:100%;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:100%;}</style></div>
 						</div>
 						<div class="col-lg-4 col-md-12 pt-100 pb-100">
 							<form class="form-area" id="myForm" action="" method="post" class="contact-form text-right">

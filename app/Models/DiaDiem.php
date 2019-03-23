@@ -5,6 +5,7 @@ namespace App\Models;
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 use App\Models\DichVu;
 use App\Models\DiaChi;
+use App\Models\DanhGia;
 
 /**
  * Class DiaDiem.
@@ -83,5 +84,10 @@ class DiaDiem extends Eloquent
     public function diachi()
     {
       return $this->embedsOne(DiaChi::class);
+    }
+
+    public function danhgias()
+    {
+      return $this->embedsMany(DanhGia::class);
     }
 }

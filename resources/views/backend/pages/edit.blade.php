@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-{{ html()->modelForm($page, 'PATCH', route('admin.pages.update', $page->_id))->class('form-horizontal')->open() }}
+{{ html()->modelForm($page, 'PATCH', route('admin.pages.update', $page->_id))->class('form-horizontal quill-form')->open() }}
     <div class="card">
         <div class="card-body">
             <div class="row">
@@ -48,12 +48,8 @@
                         <div class="form-group row">
                             {{ html()->label('Nội dung')->class('col-md-2 form-control-label')->for('content') }}
                             <div class="col-md-10">
-                                {{ html()->textarea('content')
-                                    ->class('form-control')
-                                    ->placeholder('Nội dung')
-                                    ->attribute('maxlength', 191)
-                                    ->required()
-                                    ->autofocus() }}
+                                <input name="content" type="hidden">
+                                <div id="content-editor-container">{!! $page->content !!}</div>
                             </div><!--col-->
                         </div><!--form-group-->
                         <div class="form-group row">
@@ -85,3 +81,73 @@
     </div><!--card-->
 {{ html()->closeModelForm() }}
 @endsection
+
+
+@push('after-scripts')
+<script>
+    $(document).ready(function(){
+        var toolbarOptions = [
+            ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+            ['blockquote', 'code-block'],
+
+            [{
+                'header': 1
+            }, {
+                'header': 2
+            }], // custom button values
+            [{
+                'list': 'ordered'
+            }, {
+                'list': 'bullet'
+            }],
+            [{
+                'script': 'sub'
+            }, {
+                'script': 'super'
+            }], // superscript/subscript
+            [{
+                'indent': '-1'
+            }, {
+                'indent': '+1'
+            }], // outdent/indent
+            [{
+                'direction': 'rtl'
+            }], // text direction
+
+            [{
+                'size': ['small', false, 'large', 'huge']
+            }], // custom dropdown
+            [{
+                'header': [1, 2, 3, 4, 5, 6, false]
+            }],
+
+            [{
+                'color': []
+            }, {
+                'background': []
+            }], // dropdown with defaults from theme
+            [{
+                'font': []
+            }],
+            [{
+                'align': []
+            }],
+
+            ['clean'], // remove formatting button
+            ['link', 'image', 'video']
+        ];
+        var editor = new Quill('#content-editor-container', {
+            modules: {
+                toolbar: toolbarOptions
+            },
+            theme: 'snow'
+        });
+        editor.container.style.height = '300px';
+        $('.quill-form').submit(function () {
+            var content = document.querySelector('input[name=content]');
+            content.value = editor.root.innerHTML;
+        });
+
+});
+</script>
+@endpush
