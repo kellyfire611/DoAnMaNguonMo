@@ -99,21 +99,21 @@ class DiaDiemController extends Controller
         );
         $inputs['trangthai'] = $request->has('trangthai') ? '1' : '0';
 
-        // $strTinhThanh = $request->input('slTinhThanh');
-        // $arrTinhThanh = explode("-", $strTinhThanh);
-        // $inputs['diachi'] = new DiaChi([
-        //     'tendiachi' => $request->input('tendiachi'),
-        //     'tinhthanh' => isset($arrTinhThanh[0]) ? $arrTinhThanh[0] : '',
-        //     'quanhuyen' => isset($arrTinhThanh[1]) ? $arrTinhThanh[0] : '',
-        //     'xaphuong' => isset($arrTinhThanh[2]) ? $arrTinhThanh[0] : '',
-        // ]);
-
+        $strTinhThanh = $request->input('slTinhThanh');
+        $arrTinhThanh = explode("-", $strTinhThanh);
         $inputs['diachi'] = new DiaChi([
             'tendiachi' => $request->input('tendiachi'),
-            'tinhthanh' => $request->input('tinhthanh'),
-            'quanhuyen' => $request->input('quanhuyen'),
-            'xaphuong' => $request->input('xaphuong'),
+            'tinhthanh' => isset($arrTinhThanh[0]) ? trim($arrTinhThanh[0]) : '',
+            'quanhuyen' => isset($arrTinhThanh[1]) ? trim($arrTinhThanh[1]) : '',
+            'xaphuong' => isset($arrTinhThanh[2]) ? trim($arrTinhThanh[2]) : '',
         ]);
+
+        // $inputs['diachi'] = new DiaChi([
+        //     'tendiachi' => $request->input('tendiachi'),
+        //     'tinhthanh' => $request->input('tinhthanh'),
+        //     'quanhuyen' => $request->input('quanhuyen'),
+        //     'xaphuong' => $request->input('xaphuong'),
+        // ]);
 
         $anhdaidien_file;
         if($request->hasFile('anhdaidien_file'))
@@ -188,8 +188,34 @@ class DiaDiemController extends Controller
     public function edit(ManageDiaDiemRequest $request, $_id)
     {
         $DiaDiem = DiaDiem::find($_id);
+        $diachis = [];
+        $tinhthanh = TinhThanh::all();
+        foreach($tinhthanh as $keyTT => $valueTT)
+        {
+            foreach($valueTT->quanhuyens as $keyQH => $valueQH)
+            {
+                foreach($valueQH->xaphuongs as $keyXP => $valueXP)
+                {
+                    $diachis[] = [
+                        'tinhthanh' => $valueTT->tentinhthanh,
+                        'quanhuyen' => $valueQH->tenquanhuyen,
+                        'xaphuong' => $valueXP->tenxaphuong,
+                        'all' => "$valueTT->tentinhthanh - $valueQH->tenquanhuyen - $valueXP->tenxaphuong"
+                    ];
+                }
+            }
+        }
+        $DiaDiem->diachiedit = $DiaDiem->diachi->tinhthanh.' - '.$DiaDiem->diachi->quanhuyen.' - '.$DiaDiem->diachi->xaphuong;
+        $diachis[] = [
+            'tinhthanh' => $DiaDiem->diachi->tinhthanh,
+            'quanhuyen' => $DiaDiem->diachi->quanhuyen,
+            'xaphuong' => $DiaDiem->diachi->xaphuong,
+            'all' => $DiaDiem->diachi->tinhthanh.' - '.$DiaDiem->diachi->quanhuyen.' - '.$DiaDiem->diachi->xaphuong
+        ];
+        // dd($DiaDiem);
         return view('backend.diadiem.edit')
-            ->with('diadiem', $DiaDiem);
+            ->with('diadiem', $DiaDiem)
+            ->with('diachis', $diachis);
     }
 
     /**
@@ -217,12 +243,22 @@ class DiaDiemController extends Controller
             'GPS'
         );
         $inputs['trangthai'] = $request->has('trangthai') ? '1' : '0';
+
+        $strTinhThanh = $request->input('slTinhThanh');
+        $arrTinhThanh = explode("-", $strTinhThanh);
         $inputs['diachi'] = new DiaChi([
             'tendiachi' => $request->input('tendiachi'),
-            'tinhthanh' => $request->input('tinhthanh'),
-            'quanhuyen' => $request->input('quanhuyen'),
-            'xaphuong' => $request->input('xaphuong'),
+            'tinhthanh' => isset($arrTinhThanh[0]) ? trim($arrTinhThanh[0]) : '',
+            'quanhuyen' => isset($arrTinhThanh[1]) ? trim($arrTinhThanh[1]) : '',
+            'xaphuong' => isset($arrTinhThanh[2]) ? trim($arrTinhThanh[2]) : '',
         ]);
+
+        // $inputs['diachi'] = new DiaChi([
+        //     'tendiachi' => $request->input('tendiachi'),
+        //     'tinhthanh' => $request->input('tinhthanh'),
+        //     'quanhuyen' => $request->input('quanhuyen'),
+        //     'xaphuong' => $request->input('xaphuong'),
+        // ]);
         
         $anhdaidien_file;
         if($request->hasFile('anhdaidien_file'))

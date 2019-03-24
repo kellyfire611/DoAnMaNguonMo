@@ -71,7 +71,7 @@
                         </div><!--form-group-->
 
                         <div class="form-group row">
-                            {{ html()->label('Tỉnh thành')->class('col-md-2 form-control-label')->for('tinhthanh') }}
+                            {{ html()->label('Tỉnh thành/Quận huyện/Xã phường')->class('col-md-2 form-control-label')->for('tinhthanh') }}
                             <div class="col-md-10">
                                 <select name="slTinhThanh" class="form-control">
                                 @foreach($diachis as $diachi)
@@ -81,38 +81,6 @@
                             </div><!--col-->
                         </div><!--form-group-->
 
-
-                        <div class="form-group row">
-                            {{ html()->label('Tỉnh thành')->class('col-md-2 form-control-label')->for('tinhthanh') }}
-                            <div class="col-md-10">
-                                {{ html()->text('tinhthanh')
-                                    ->class('form-control')
-                                    ->placeholder('Tỉnh thành')
-                                    ->attribute('maxlength', 191)
-                                    ->required() }}
-                            </div><!--col-->
-                        </div><!--form-group-->
-                        <div class="form-group row">
-                            {{ html()->label('Quận huyện')->class('col-md-2 form-control-label')->for('quanhuyen') }}
-                            <div class="col-md-10">
-                                {{ html()->text('quanhuyen')
-                                    ->class('form-control')
-                                    ->placeholder('Quận huyện')
-                                    ->attribute('maxlength', 191)
-                                    ->required() }}
-                            </div><!--col-->
-                        </div><!--form-group-->
-                        <div class="form-group row">
-                            {{ html()->label('Xã phường')->class('col-md-2 form-control-label')->for('xaphuong') }}
-                            <div class="col-md-10">
-                                {{ html()->text('xaphuong')
-                                    ->class('form-control')
-                                    ->placeholder('Xã phường')
-                                    ->attribute('maxlength', 191)
-                                    ->required() }}
-                            </div><!--col-->
-                        </div><!--form-group-->
-                        
                         <div class="form-group row">
                             {{ html()->label('Từ khóa')->class('col-md-2 form-control-label')->for('tukhoa') }}
                             <div class="col-md-10">

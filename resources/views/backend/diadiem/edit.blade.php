@@ -72,25 +72,22 @@
                                 <input class="form-control" type="text" name="tendiachi" id="tendiachi" value="{{ old('tendiachi', $diadiem->diachi->tendiachi) }}" placeholder="Địa chỉ" maxlength="191" required="">
                             </div><!--col-->
                         </div><!--form-group-->
+
                         <div class="form-group row">
-                            {{ html()->label('Tỉnh thành')->class('col-md-2 form-control-label')->for('tinhthanh') }}
+                            {{ html()->label('Tỉnh thành/Quận huyện/Xã phường')->class('col-md-2 form-control-label')->for('tinhthanh') }}
                             <div class="col-md-10">
-                            <input class="form-control" type="text" name="tinhthanh" id="tinhthanh" value="{{ old('tinhthanh', $diadiem->diachi->tinhthanh) }}" placeholder="Tỉnh thành" maxlength="191" required="">
+                                <select name="slTinhThanh" class="form-control">
+                                @foreach($diachis as $diachi)
+                                @if($diadiem->diachiedit === $diachi['all'])
+                                <option value="{{ $diachi['all'] }}" selected>{{ $diachi['all'] }}</option>
+                                @else
+                                <option value="{{ $diachi['all'] }}">{{ $diachi['all'] }}</option>
+                                @endif
+                                @endforeach
+                                </select>
                             </div><!--col-->
                         </div><!--form-group-->
-                        <div class="form-group row">
-                            {{ html()->label('Quận huyện')->class('col-md-2 form-control-label')->for('quanhuyen') }}
-                            <div class="col-md-10">
-                                <input class="form-control" type="text" name="quanhuyen" id="quanhuyen" value="{{ old('quanhuyen', $diadiem->diachi->quanhuyen) }}" placeholder="Quận huyện" maxlength="191" required="">
-                            </div><!--col-->
-                        </div><!--form-group-->
-                        <div class="form-group row">
-                            {{ html()->label('Xã phường')->class('col-md-2 form-control-label')->for('xaphuong') }}
-                            <div class="col-md-10">
-                                <input class="form-control" type="text" name="xaphuong" id="xaphuong" value="{{ old('xaphuong', $diadiem->diachi->xaphuong) }}" placeholder="Xã phường" maxlength="191" required="">
-                            </div><!--col-->
-                        </div><!--form-group-->
-                        
+
                         <div class="form-group row">
                             {{ html()->label('Từ khóa')->class('col-md-2 form-control-label')->for('tukhoa') }}
                             <div class="col-md-10">
@@ -201,7 +198,7 @@
                                 <div class="kv-avatar text-center">
                                     <div class="file-loading">
                                         @if(empty($dichvu->anhdaidien))
-                                        <input id="dichvu-anhdaidien-file-{{ $i }}" name="dichvu_anhdaidien_file[]" type="file" required>
+                                        <input id="dichvu-anhdaidien-file-{{ $i }}" name="dichvu_anhdaidien_file[]" type="file" >
                                         @else
                                         <input id="dichvu-anhdaidien-file-{{ $i }}" name="dichvu_anhdaidien_file[]" type="file">
                                         @endif
