@@ -1,5 +1,5 @@
 <script id="dichvu-row-template" type="text/x-lodash-template">
-<div class="row border-bottom mt-4" id="dynamic-row-<% index %>">
+<div class="row border-bottom mt-4" id="dynamic-row-<%= index %>">
     <div class="col col-md-3 text-center">
         <div class="kv-avatar text-center">
             <div class="file-loading">

@@ -298,12 +298,13 @@ class DiaDiemController extends Controller
             }
             else
             {
-                //$dv->anhdaidien
+                $dv->anhdaidien = $request->dichvu_anhdaidien_old_file[$key];
             }
             $dichvus[] = $dv;
         }
         $inputs['dichvus'] = $dichvus;
 
+        //dd($request, $inputs);
         // Save
         $DiaDiemUpdated = $this->DiaDiemRepository->update($DiaDiem, $inputs);
         if($DiaDiemUpdated)

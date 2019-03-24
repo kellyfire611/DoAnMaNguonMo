@@ -34,6 +34,11 @@
 <section class="sample-text-area">
     <div class="container">
         <h3 class="text-heading">Giới thiệu</h3>
+        <ul>
+            <li>Email: {{ $diadiem->email }}</li>
+            <li>Điện thoại: {{ $diadiem->dienthoai }}</li>
+            <li>Hoạt động từ: {{ $diadiem->giomocua }}-{{ $diadiem->giodongcua }}</li>
+        </ul>
         {!! $diadiem->gioithieu !!}
     </div>
 </section>

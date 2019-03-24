@@ -185,55 +185,97 @@
             </div><!--row-->
 
             <div id="dynamic_field">
-                <input type="hidden" name="dichvu_chitiet_deleted" />
-                <div class="row mt-4 mb-4">
-                    <?php
-                    $i = 0;
-                    ?>
-                    @foreach($diadiem->dichvus as $dichvu)
-                    @if($dichvu == $diadiem->dichvus->first())
-                    <div id="dynamic-row" class="col">
-                        <div class="row border-bottom">
-                            <div class="col col-md-3 text-center">
-                                <div class="kv-avatar text-center">
-                                    <div class="file-loading">
-                                        @if(empty($dichvu->anhdaidien))
-                                        <input id="dichvu-anhdaidien-file-{{ $i }}" name="dichvu_anhdaidien_file[]" type="file" >
-                                        @else
-                                        <input id="dichvu-anhdaidien-file-{{ $i }}" name="dichvu_anhdaidien_file[]" type="file">
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="kv-avatar-hint"><small>Select file < 1500 KB</small></div>
-                                <div id="kv-avatar-errors-dichvu-anhdaidien-file" class="center-block" style="display:none"></div>
-                            </div><!-- col -->
-                            <div class="col">
-                                <div class="form-group row">
-                                    <div class="col">
-                                        <input type="text" name="dichvu_tendichvu[]" id="dichvu-tendichvu-{{ $i }}" placeholder="Tên dịch vụ" class="form-control" value="{{ $dichvu->tendichvu }}" />
-                                    </div><!--col-->
-                                    <div class="col">
-                                        <input type="text" name="dichvu_motangan[]" id="dichvu-motangan-{{ $i }}" placeholder="Mô tả ngắn" class="form-control" value="{{ $dichvu->motangan }}" />
-                                    </div><!--col-->
-                                    <div class="col">
-                                        <input type="text" name="dichvu_gia[]" id="dichvu-gia-{{ $i }}" placeholder="Giá" class="form-control input-element-number number" value="{{ $dichvu->gia }}" />
-                                    </div><!--col-->
-                                    <div class="col col-md-auto">
-                                        <button type="button" name="add" id="add" class="btn btn-success">+</button>
-                                    </div>
-                                </div><!--form-group-->
-
-                                <div class="form-group row">
-                                    <div class="col">
-                                        <input type="text" name="dichvu_gioithieu[]" id="dichvu-gioithieu-{{ $i }}" placeholder="Giới thiệu" class="form-control" value="{{ $dichvu->gioithieu }}" />
-                                    </div><!--col-->
-                                </div><!--form-group-->
-                            </div><!-- col -->
-                        </div><!-- row -->
+                <?php
+                $i = 0;
+                ?>
+                @foreach($diadiem->dichvus as $dichvu)
+                @if($dichvu == $diadiem->dichvus->first())
+                <div class="row border-bottom mt-4" id="dynamic-row-{{ $i }}">
+                    <div class="col col-md-3 text-center">
+                        @if(!empty($dichvu->anhdaidien))
+                        <input type="hidden" name="dichvu_anhdaidien_old_file[]" value="{{ $dichvu->anhdaidien }}"/>
+                        @endif
+                        <div class="kv-avatar text-center">
+                            <div class="file-loading">
+                                @if(empty($dichvu->anhdaidien))
+                                <input id="dichvu-anhdaidien-file-{{ $i }}" name="dichvu_anhdaidien_file[]" type="file" required>
+                                @else
+                                <input id="dichvu-anhdaidien-file-{{ $i }}" name="dichvu_anhdaidien_file[]" type="file">
+                                @endif
+                            </div>
+                        </div>
+                        <div class="kv-avatar-hint"><small>Select file < 1500 KB</small></div>
+                        <div id="kv-avatar-errors-dichvu-anhdaidien-file" class="center-block" style="display:none"></div>
                     </div><!-- col -->
-                    @endif
-                    @endforeach
-                </div>
+                    <div class="col">
+                        <div class="form-group row">
+                            <div class="col">
+                                <input type="text" name="dichvu_tendichvu[]" id="dichvu-tendichvu-{{ $i }}" placeholder="Tên dịch vụ" class="form-control" value="{{ $dichvu->tendichvu }}" />
+                            </div><!--col-->
+                            <div class="col">
+                                <input type="text" name="dichvu_motangan[]" id="dichvu-motangan-{{ $i }}" placeholder="Mô tả ngắn" class="form-control" value="{{ $dichvu->motangan }}" />
+                            </div><!--col-->
+                            <div class="col">
+                                <input type="text" name="dichvu_gia[]" id="dichvu-gia-{{ $i }}" placeholder="Giá" class="form-control input-element-number number" value="{{ $dichvu->gia }}" />
+                            </div><!--col-->
+                            <div class="col col-md-auto">
+                                <button type="button" name="add" id="add" class="btn btn-success">+</button>
+                            </div>
+                        </div><!--form-group-->
+
+                        <div class="form-group row">
+                            <div class="col">
+                                <input type="text" name="dichvu_gioithieu[]" id="dichvu-gioithieu-{{ $i }}" placeholder="Giới thiệu" class="form-control" value="{{ $dichvu->gioithieu }}" />
+                            </div><!--col-->
+                        </div><!--form-group-->
+                    </div><!-- col -->
+                </div><!-- row -->
+                @else
+                <div class="row border-bottom mt-4" id="dynamic-row-{{ $i }}">
+                    <div class="col col-md-3 text-center">
+                        @if(!empty($dichvu->anhdaidien))
+                        <input type="hidden" name="dichvu_anhdaidien_old_file[]" value="{{ $dichvu->anhdaidien }}"/>
+                        @endif
+                        <div class="kv-avatar text-center">
+                            <div class="file-loading">
+                                @if(empty($dichvu->anhdaidien))
+                                <input id="dichvu-anhdaidien-file-{{ $i }}" name="dichvu_anhdaidien_file[]" type="file" required>
+                                @else
+                                <input id="dichvu-anhdaidien-file-{{ $i }}" name="dichvu_anhdaidien_file[]" type="file">
+                                @endif
+                            </div>
+                        </div>
+                        <div class="kv-avatar-hint"><small>Select file < 1500 KB</small></div>
+                        <div id="kv-avatar-errors-dichvu-anhdaidien-file" class="center-block" style="display:none"></div>
+                    </div><!-- col -->
+                    <div class="col">
+                        <div class="form-group row">
+                            <div class="col">
+                                <input type="text" name="dichvu_tendichvu[]" id="dichvu-tendichvu-{{ $i }}" placeholder="Tên dịch vụ" class="form-control" value="{{ $dichvu->tendichvu }}" />
+                            </div><!--col-->
+                            <div class="col">
+                                <input type="text" name="dichvu_motangan[]" id="dichvu-motangan-{{ $i }}" placeholder="Mô tả ngắn" class="form-control" value="{{ $dichvu->motangan }}" />
+                            </div><!--col-->
+                            <div class="col">
+                                <input type="text" name="dichvu_gia[]" id="dichvu-gia-{{ $i }}" placeholder="Giá" class="form-control input-element-number number" value="{{ $dichvu->gia }}" />
+                            </div><!--col-->
+                            <div class="col col-md-auto">
+                                <button type="button" name="remove" id="{{ $i }}" class="btn btn-danger btn_remove">X</button>
+                            </div>
+                        </div><!--form-group-->
+
+                        <div class="form-group row">
+                            <div class="col">
+                                <input type="text" name="dichvu_gioithieu[]" id="dichvu-gioithieu-{{ $i }}" placeholder="Giới thiệu" class="form-control" value="{{ $dichvu->gioithieu }}" />
+                            </div><!--col-->
+                        </div><!--form-group-->
+                    </div><!-- col -->
+                </div><!-- row -->
+                @endif
+                <?php
+                $i++;
+                ?>
+                @endforeach
             </div>
         </div><!--card-body-->
 
@@ -334,6 +376,25 @@
                 'gioithieu': null
             });
             $('#dynamic_field').append(templateHTML);
+
+            var anhdaidien_file_options = {
+                theme: 'fas',
+                overwriteInitial: true,
+                maxFileSize: 1500,
+                showClose: true,
+                showUpload: false,
+                showCaption: true,
+                //showBrowse: false,
+                //browseOnZoneClick: true,
+                removeLabel: '',
+                removeTitle: 'Cancel or reset changes',
+                elErrorContainer: '#kv-avatar-errors-anhdaidien-file',
+                msgErrorClass: 'alert alert-block alert-danger',
+                defaultPreviewContent: '<img src="'+defaultImg+'" alt="No image" style="width:auto;height:auto;max-width:100%;max-height:100%;"><h6 class="text-muted">Click để chọn ảnh</h6>',
+                //layoutTemplates: {main2: '{preview} {remove}'},
+                allowedFileExtensions: ["jpg", "png", "gif"],
+            };
+            $("#dichvu-anhdaidien-file-"+i).fileinput(anhdaidien_file_options);
             i++;
         });  
 
@@ -344,10 +405,6 @@
 
         $(document).on('click', '#add', function(){
             $('.input-element-number').each((i, el) => {
-                // var cleave = new Cleave(el, {
-                //     numeral: true,
-                //     numeralThousandsGroupStyle: 'thousand'
-                // });
                 $(el).cleave({ numeral: true, numeralThousandsGroupStyle: 'thousand', autoUnmask: true});
             });
         });
@@ -385,23 +442,44 @@
         };
         $("#anhdaidien-file").fileinput(anhdaidien_file_options);
 
-        $("#dichvu-anhdaidien-file1").fileinput({
+        <?php
+        $i=0;
+        ?>
+        @foreach($diadiem->dichvus as $dichvu)
+        $("#dichvu-anhdaidien-file-{{ $i }}").fileinput({
             theme: 'fas',
             overwriteInitial: true,
             maxFileSize: 1500,
             showClose: false,
             showCaption: false,
-            showBrowse: false,
-            browseOnZoneClick: true,
+            //showBrowse: false,
+            //browseOnZoneClick: true,
             removeLabel: '',
             removeTitle: 'Cancel or reset changes',
             elErrorContainer: '#kv-avatar-errors-dichvu-anhdaidien-file1',
             msgErrorClass: 'alert alert-block alert-danger',
             defaultPreviewContent: '<img src="'+defaultImg+'" alt="No image" style="width:auto;height:auto;max-width:100%;max-height:100%;"><h6 class="text-muted">Click để chọn ảnh</h6>',
-            layoutTemplates: {main2: '{preview} {remove} {browse}'},
-            allowedFileExtensions: ["jpg", "png", "gif"]
+            //layoutTemplates: {main2: '{preview} {remove} {browse}'},
+            allowedFileExtensions: ["jpg", "png", "gif"],
+            @if(!empty($dichvu->anhdaidien))
+            initialPreview: [
+                "<img src='{{ asset('storage/' . $dichvu->anhdaidien) }}' class='file-preview-image kv-preview-data' alt='{{ $dichvu->tendichvu }}' style='width:auto;height:auto;max-width:100%;max-height:100%;'>",
+            ],
+            initialPreviewConfig: [
+                {
+                    caption: "{{ $dichvu->tendichvu }}", 
+                    size: {{ Storage::exists('public/' . $dichvu->anhdaidien) ? Storage::size('public/' . $dichvu->anhdaidien) : 0 }}, 
+                    width: "120px", 
+                    key: 1
+                },
+            ],
+            @endif
         });
-
+        <?php
+        $i++;
+        ?>
+        @endforeach
+        
         
 });
 </script>
