@@ -33,7 +33,7 @@ dom.watch();
  * code may be modified to fit the specific needs of your application.
  */
 
-window.$ = window.jQuery = $;
+window.$ = window.jQuery = window.jquery = $;
 window.swal = swal;
 window._ = _; // Lodash
 

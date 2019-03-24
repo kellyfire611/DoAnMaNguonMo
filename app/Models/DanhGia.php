@@ -24,7 +24,7 @@ class DanhGia extends Eloquent
      *
      * @var array
      */
-    protected $fillable = ['email', 'noidung', 'diem', 'trangthai'];
+    protected $fillable = ['email', 'first_name', 'last_name', 'noidung', 'diem', 'trangthai'];
 
     /**
      * @return string

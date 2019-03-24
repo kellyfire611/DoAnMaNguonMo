@@ -15,6 +15,8 @@
 
         {{-- See https://laravel.com/docs/5.5/blade#stacks for usage --}}
         @stack('before-styles')
+        
+        {{ style(mix('css/frontend.css')) }}
 
         <!-- Check if the language is set to RTL, so apply the RTL layouts -->
         <!-- Otherwise apply the normal LTR layouts -->
@@ -25,13 +27,13 @@
         ============================================= -->
         <link rel="stylesheet" href="{{ asset('restaurant/css/linearicons.css') }}">
         <link rel="stylesheet" href="{{ asset('restaurant/css/font-awesome.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('restaurant/css/bootstrap.css') }}">
+        
         <link rel="stylesheet" href="{{ asset('restaurant/css/magnific-popup.css') }}">
         <link rel="stylesheet" href="{{ asset('restaurant/css/nice-select.css') }}">					
         <link rel="stylesheet" href="{{ asset('restaurant/css/animate.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('restaurant/css/owl.carousel.css') }}">
         <link rel="stylesheet" href="{{ asset('restaurant/css/main.css') }}">
         <link rel="stylesheet" href="{{ asset('restaurant/css/custom.css') }}">
+
 
         @stack('after-styles')
     </head>
@@ -47,21 +49,21 @@
         @include('frontend.includes.footer')
         <!-- Scripts -->
         @stack('before-scripts')
-        <script src="{{ asset('restaurant/js/vendor/jquery-2.2.4.min.js') }}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="{{ asset('restaurant/js/vendor/bootstrap.min.js') }}"></script>			
-        
+        {!! script(mix('js/manifest.js')) !!}
+        {!! script(mix('js/vendor.js')) !!}
+        {!! script(mix('js/frontend.js')) !!}
+        		        
         <script src="{{ asset('restaurant/js/easing.min.js') }}"></script>			
         <script src="{{ asset('restaurant/js/hoverIntent.js') }}"></script>
         <script src="{{ asset('restaurant/js/superfish.min.js') }}"></script>	
         <script src="{{ asset('restaurant/js/jquery.ajaxchimp.min.js') }}"></script>
         <script src="{{ asset('restaurant/js/jquery.magnific-popup.min.js') }}"></script>	
-        <script src="{{ asset('restaurant/js/owl.carousel.min.js') }}"></script>			
         <script src="{{ asset('restaurant/js/jquery.sticky.js') }}"></script>
         <script src="{{ asset('restaurant/js/jquery.nice-select.min.js') }}"></script>			
         <script src="{{ asset('restaurant/js/parallax.min.js') }}"></script>	
         <script src="{{ asset('restaurant/js/mail-script.js') }}"></script>	
         <script src="{{ asset('restaurant/js/main.js') }}"></script>	
+
         @stack('after-scripts')
 
         @include('includes.partials.ga')

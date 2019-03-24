@@ -121,7 +121,7 @@
 						</div>
 					</div>						
 					<div class="row justify-content-center">
-						<div class="active-realated-carusel">
+						<div class="active-realated-carusel owl-carousel owl-theme">
                             @foreach($topmonans as $monan)
 							<div class="item row align-items-center">
 								<div class="col-lg-6 rel-left">

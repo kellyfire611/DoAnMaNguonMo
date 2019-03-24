@@ -5,6 +5,7 @@ namespace App\Repositories\Backend;
 use App\Models\DiaDiem;
 use App\Models\DichVu;
 use App\Models\DiaChi;
+use App\Models\DanhGia;
 use Illuminate\Support\Facades\DB;
 use App\Exceptions\GeneralException;
 use App\Repositories\BaseRepository;
@@ -132,6 +133,30 @@ class DiaDiemRepository extends BaseRepository
             
             return $DiaDiem;
         }
+
+        throw new GeneralException(__('exceptions.backend.access.DiaDiems.update_error'));
+    }
+
+    /**
+     * @param DiaDiem  $DiaDiem
+     * @param array $data
+     *
+     * @return DiaDiem
+     * @throws GeneralException
+     * @throws \Exception
+     * @throws \Throwable
+     */
+    public function createDanhGia(DiaDiem $DiaDiem, array $data) : DiaDiem
+    {   
+        $DiaDiem->danhgias()->save(new DanhGia([
+            'email' => $data['email'], 
+            'first_name' => $data['first_name'], 
+            'last_name' => $data['last_name'], 
+            'noidung' => $data['noidung'], 
+            'diem' => $data['diem'], 
+            'trangthai' => 0 //chưa duyệt
+        ]));
+        return $DiaDiem;
 
         throw new GeneralException(__('exceptions.backend.access.DiaDiems.update_error'));
     }
