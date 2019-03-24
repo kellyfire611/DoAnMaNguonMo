@@ -159,10 +159,7 @@ $(function () {
     /* cleaver.js
      */
     $('.input-element-number').each((i, el) => {
-        var cleave = new Cleave(el, {
-            numeral: true,
-            numeralThousandsGroupStyle: 'thousand'
-        });
+        $(el).cleave({ numeral: true, numeralThousandsGroupStyle: 'thousand', autoUnmask: true});
     });
 });
 

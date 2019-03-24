@@ -57,6 +57,49 @@ class DiaDiemRepository extends BaseRepository
     }
 
     /**
+     * @param int    $paged
+     * @param string $orderBy
+     * @param string $sort
+     *
+     * @return mixed
+     */
+    public function search(array $data)
+    {
+        if(empty($data['keyword']))
+        {
+            return $this->model->all();
+        }
+
+        $keyword = $data['keyword'];
+        if($data['type_search'] == 'tendiadiem')
+        {
+            $result = $this->model->where('tendiadiem', 'LIKE', "%$keyword%")->get();
+        }
+        else if($data['type_search'] == 'tentinhthanh')
+        {
+            $result = $this->model
+                ->where('diachi.tinhthanh', 'LIKE', "%$keyword%")
+                ->orWhere('diachi.quanhuyen', 'LIKE', "%$keyword%")
+                ->orWhere('diachi.xaphuong', 'LIKE', "%$keyword%")
+                ->get();
+        }
+        else if($data['type_search'] == 'giatien')
+        {
+            // $result = $this->model->whereHas('dichvus', function($query) use ($keyword) {
+            //     $query->whereBetween('gia', [0, $keyword]);
+            // })->get();
+            $result = $this->model
+                ->whereBetween('dichvus.gia', [0, 88888888])
+                // ->orWhere('diachi.quanhuyen', 'LIKE', "%$keyword%")
+                // ->orWhere('diachi.xaphuong', 'LIKE', "%$keyword%")
+                ->get();
+        }
+        
+        // dd($result);
+        return $result;
+    }
+
+    /**
      * @param array $data
      *
      * @return DiaDiem

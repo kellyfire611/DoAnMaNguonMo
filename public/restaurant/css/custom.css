@@ -116,3 +116,7 @@ footer p {
     display: flex;
     height: auto !important;
 } */
+.search-area {
+    background-color: #442c21;
+    text-align: center;
+}

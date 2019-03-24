@@ -364,7 +364,7 @@
         });
 
         //Dynamic field
-        var i=1;  
+        var i={{ $diadiem->dichvus->count() }};  
         $('#add').click(function(){  
             var dichvuRowTemplate = document.getElementById("dichvu-row-template").innerHTML;
             var templateFn = _.template(dichvuRowTemplate);

@@ -2,14 +2,37 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Http\Requests\Backend\DiaDiem\ManageDiaDiemRequest;
 use App\Models\DiaDiem;
+use App\Models\DichVu;
+use App\Models\DiaChi;
+use App\Models\TinhThanh;
+use App\Models\QuanHuyen;
+use App\Models\XaPhuong;
+use App\Http\Controllers\Controller;
+use App\Repositories\Backend\DiaDiemRepository;
 
 /**
  * Class HomeController.
  */
 class HomeController extends Controller
 {
+    /**
+     * @var DiaDiemRepository
+     */
+    protected $DiaDiemRepository;
+
+    /**
+     * DiaDiemController constructor.
+     *
+     * @param DiaDiemRepository $DiaDiemRepository
+     */
+    public function __construct(DiaDiemRepository $DiaDiemRepository)
+    {
+        $this->DiaDiemRepository = $DiaDiemRepository;
+    }
+
     /**
      * @return \Illuminate\View\View
      */
@@ -21,5 +44,19 @@ class HomeController extends Controller
         return view('frontend.index')
             ->with('diadiems', $diadiems)
             ->with('topmonans', $topmonans);
+    }
+
+    public function search(Request $request)
+    {
+        $inputs = $request->only(
+            'type_search',
+            'keyword'
+        );
+
+        $inputs['keyword'] = trim($inputs['keyword']);
+        $diadiems = $this->DiaDiemRepository->search($inputs);
+        return view('frontend.search')
+            ->with('diadiems', $diadiems)
+            ->with('inputs', $inputs);
     }
 }

@@ -25,6 +25,15 @@ class DichVu extends Eloquent
     protected $fillable = ['tendichvu', 'motangan', 'anhdaidien', 'gioithieu', 'gia'];
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+      'gia' => 'double',
+    ];
+
+    /**
      * @return string
      */
     public function getShowButtonAttribute()

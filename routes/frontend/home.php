@@ -24,6 +24,9 @@ Route::get('/diadiem', [DiaDiemController::class, 'index'])->name('diadiem.index
 Route::get('diadiem/{diadiem}/', [DiaDiemController::class, 'show'])->name('diadiem.show');
 Route::post('diadiem/{diadiem}/goidanhgia/', [DiaDiemController::class, 'goidanhgia'])->name('diadiem.goidanhgia');
 
+// Search
+Route::post('timkiem', [HomeController::class, 'search'])->name('search');
+
 /*
  * These frontend controllers require the user to be logged in
  * All route names are prefixed with 'frontend.'

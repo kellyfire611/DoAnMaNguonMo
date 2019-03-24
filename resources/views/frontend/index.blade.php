@@ -22,6 +22,28 @@
 </section>
 <!-- End banner Area -->
 
+<!-- search banner Area -->
+{{ html()->form('POST', route('frontend.search'))->class('form-horizontal')->open() }}
+<section class="search-area p-2" id="search-area">
+    <div class="container">
+        <div class="row align-items-center justify-content-start">
+			<div class="col col-md-2">
+				<select class="form-control" name="type_search">
+					<option value="tendiadiem">Tên địa điểm</option>
+					<option value="tentinhthanh">Tên tỉnh thành</option>
+					<option value="giatien">Giá tiền</option>
+				</select>
+			</div>
+			<div class="col">
+				<input type="text" class="form-control" name="keyword" placeholder="Nhập từ khóa để tìm kiếm" />
+			</div>
+			<button class="btn btn-success" type="submit"><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+</section>
+{{ html()->form()->close() }}
+<!-- End search Area -->
+
 <!-- Start top-dish Area -->
 <section class="top-dish-area section-gap" id="dish">
 				<div class="container">
