@@ -64,7 +64,7 @@ footer p {
 .generic-banner .generic-banner-content h2 {
     font-size: 4em;
     text-shadow: 2px 2px 5px black;
-    background: rgba(199, 8, 10, 1);
+    background: rgba(199, 8, 10, 0.3);
 }
 
 .generic-banner .generic-banner-content p {
@@ -94,6 +94,10 @@ footer p {
 
 .sample-text-area {
     padding: 20px 0;
+}
+
+.generic-banner .height {
+    height: 409px;
 }
 /* 
 .owl-stage {

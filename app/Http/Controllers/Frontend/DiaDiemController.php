@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\Backend\DiaDiem\ManageDiaDiemRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Auth\User;
 use App\Models\DiaDiem;
+use App\Models\DanhGia;
 
 /**
  * Class DiaDiemController.
@@ -28,5 +30,11 @@ class DiaDiemController extends Controller
         $DiaDiem = DiaDiem::find($_id);
         return view('frontend.diadiem.show')
             ->with('diadiem', $DiaDiem);
+    }
+
+    public function goidanhgia(Request $request, $_id)
+    {
+        $DiaDiem = DiaDiem::find($_id);
+        
     }
 }

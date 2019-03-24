@@ -22,6 +22,7 @@ Route::get('pages/{slug}', [PageController::class, 'show'])->name('pages.show');
 // Địa điểm
 Route::get('/diadiem', [DiaDiemController::class, 'index'])->name('diadiem.index');
 Route::get('diadiem/{diadiem}/', [DiaDiemController::class, 'show'])->name('diadiem.show');
+Route::post('diadiem/{diadiem}/goidanhgia/', [DiaDiemController::class, 'goidanhgia'])->name('diadiem.goidanhgia');
 
 /*
  * These frontend controllers require the user to be logged in

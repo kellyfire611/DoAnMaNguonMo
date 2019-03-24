@@ -98,6 +98,24 @@
                     Danh sách các đánh giá
                 </div>
             </div>
+
+            {{ html()->form('POST', route('frontend.diadiem.goidanhgia', ['diadiem' => $diadiem->_id]))->class('form-horizontal quill-form')->open() }}
+            <div class="row">
+                <div class="col">
+                    <div class="form-group row">
+                        {{ html()->label('Bình luận')->class('col-md-2 form-control-label')->for('title') }}
+                        <div class="col-md-10">
+                            {{ html()->text('title')
+                                ->class('form-control')
+                                ->placeholder('Bình luận')
+                                ->attribute('maxlength', 191)
+                                ->required()
+                                ->autofocus() }}
+                        </div><!--col-->
+                    </div><!--form-group-->
+                </div>
+            </div>
+            {{ html()->form()->close() }}
         </section>
     </div>
 </div>
