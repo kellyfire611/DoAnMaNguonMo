@@ -216,7 +216,7 @@
                                 <input type="text" name="dichvu_motangan[]" id="dichvu-motangan-{{ $i }}" placeholder="Mô tả ngắn" class="form-control" value="{{ $dichvu->motangan }}" />
                             </div><!--col-->
                             <div class="col">
-                                <input type="text" name="dichvu_gia[]" id="dichvu-gia-{{ $i }}" placeholder="Giá" class="form-control input-element-number number" value="{{ $dichvu->gia }}" />
+                                <input type="text" name="dichvu_gia[]" id="dichvu-gia-{{ $i }}" placeholder="Giá" cleave-auto-unmask="true" class="form-control input-element-number number" value="{{ $dichvu->gia }}" />
                             </div><!--col-->
                             <div class="col col-md-auto">
                                 <button type="button" name="add" id="add" class="btn btn-success">+</button>
@@ -257,7 +257,7 @@
                                 <input type="text" name="dichvu_motangan[]" id="dichvu-motangan-{{ $i }}" placeholder="Mô tả ngắn" class="form-control" value="{{ $dichvu->motangan }}" />
                             </div><!--col-->
                             <div class="col">
-                                <input type="text" name="dichvu_gia[]" id="dichvu-gia-{{ $i }}" placeholder="Giá" class="form-control input-element-number number" value="{{ $dichvu->gia }}" />
+                                <input type="text" name="dichvu_gia[]" id="dichvu-gia-{{ $i }}" placeholder="Giá" cleave-auto-unmask="true" class="form-control input-element-number number" value="{{ $dichvu->gia }}" />
                             </div><!--col-->
                             <div class="col col-md-auto">
                                 <button type="button" name="remove" id="{{ $i }}" class="btn btn-danger btn_remove">X</button>
@@ -377,6 +377,8 @@
             });
             $('#dynamic_field').append(templateHTML);
 
+            // $('#dichvu-gia-'+i).cleave({ numeral: true, numeralThousandsGroupStyle: 'thousand', autoUnmask: true});
+
             var anhdaidien_file_options = {
                 theme: 'fas',
                 overwriteInitial: true,
@@ -402,12 +404,6 @@
             var button_id = $(this).attr("id");   
             $('#dynamic-row-'+button_id+'').remove();  
         });  
-
-        $(document).on('click', '#add', function(){
-            $('.input-element-number').each((i, el) => {
-                $(el).cleave({ numeral: true, numeralThousandsGroupStyle: 'thousand', autoUnmask: true});
-            });
-        });
 
         var defaultImg = "{{ asset('img/'.'default-image-450x450.png') }}";
         var anhdaidien_file_options = {
@@ -445,7 +441,8 @@
         <?php
         $i=0;
         ?>
-        @foreach($diadiem->dichvus as $dichvu)
+        @foreach($diadiem->dichvus as $dichvu)0
+        // $('#dichvu-gia-{{ $i }}').cleave({ numeral: true, numeralThousandsGroupStyle: 'thousand', autoUnmask: true});
         $("#dichvu-anhdaidien-file-{{ $i }}").fileinput({
             theme: 'fas',
             overwriteInitial: true,

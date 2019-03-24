@@ -85,13 +85,8 @@ class DiaDiemRepository extends BaseRepository
         }
         else if($data['type_search'] == 'giatien')
         {
-            // $result = $this->model->whereHas('dichvus', function($query) use ($keyword) {
-            //     $query->whereBetween('gia', [0, $keyword]);
-            // })->get();
             $result = $this->model
-                ->whereBetween('dichvus.gia', [0, 88888888])
-                // ->orWhere('diachi.quanhuyen', 'LIKE', "%$keyword%")
-                // ->orWhere('diachi.xaphuong', 'LIKE', "%$keyword%")
+                ->whereBetween('dichvus.gia', [0, (float)$keyword])
                 ->get();
         }
         

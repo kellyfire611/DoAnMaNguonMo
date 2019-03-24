@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 use App\Models\DiaDiem;
+use MongoDB\BSON\Decimal128;
 
 /**
  * Class DichVu.
@@ -30,8 +31,13 @@ class DichVu extends Eloquent
      * @var array
      */
     protected $casts = [
-      'gia' => 'double',
+      
     ];
+
+    public function setGiaAttribute($value)
+    {
+        $this->attributes['gia'] = new Decimal128($value);
+    }
 
     /**
      * @return string
