@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('title', app_name() . ' | ' . __('labels.backend.tinhthanh.management'))
+@section('title', app_name() . ' | ' . 'Quản lý Tỉnh thành')
 
 @section('breadcrumb-links')
     @include('backend.tinhthanh.includes.breadcrumb-links')
@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
-                    {{ __('labels.backend.tinhthanh.management') }} <small class="text-muted">{{ __('labels.backend.tinhthanh.active') }}</small>
+                    {{ 'Quản lý Tỉnh thành' }} <small class="text-muted">{{ 'Danh sách' }}</small>
                 </h4>
             </div><!--col-->
 
@@ -27,7 +27,7 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>@lang('labels.backend.tinhthanh.table.tentinhthanh')</th>
+                            <th>Tên tình thành</th>
                             <th>@lang('labels.general.actions')</th>
                         </tr>
                         </thead>
@@ -46,7 +46,7 @@
         <div class="row">
             <div class="col-7">
                 <div class="float-left">
-                    {!! $tinhthanhs->total() !!} {{ trans_choice('labels.backend.tinhthanh.table.total', $tinhthanhs->total()) }}
+                    {!! $tinhthanhs->total() !!} {{ trans_choice('mẫu tin', $tinhthanhs->total()) }}
                 </div>
             </div><!--col-->
 

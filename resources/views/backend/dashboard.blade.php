@@ -47,6 +47,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col col-sm-6">
+                            <h4>TOP 5 Địa điểm được Đánh giá cao nhất</h4>
                             <div class="row">
                             <div class="col-sm-6">
                             <div class="callout callout-warning">
@@ -79,7 +80,9 @@
                                 <i class="icon-globe progress-group-icon"></i>
                                 <div>{{ $diadiem->tendiadiem }}</div>
                                 <div class="ml-auto font-weight-bold mr-2">{{ $diadiem->diemtrungbinh }}</div>
-                                <div class="text-muted small">(sao)</div>
+                                <div class="text-muted small">
+                                    <input type="number" class="rating" value="{{ $diadiem->diemtrungbinh }}" data-step="1" data-size="xs" data-readonly="true" data-theme="krajee-svg" data-show-clear="false" data-show-caption="true" data-language="vi" />
+                                </div>
                                 </div>
                                 <div class="progress-group-bars">
                                 <div class="progress progress-xs">

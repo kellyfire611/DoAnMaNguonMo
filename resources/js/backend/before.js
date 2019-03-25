@@ -27,6 +27,10 @@ import 'bootstrap-fileinput';
 import 'bootstrap-fileinput/themes/fas/theme';
 import 'bootstrap-fileinput/themes/explorer-fas/theme';
 
+import 'bootstrap-star-rating/js/star-rating';
+import 'bootstrap-star-rating/js/locales/vi';
+import 'bootstrap-star-rating/themes/krajee-svg/theme';
+
 /* cleaver.js plugin
 */
 import 'cleave.js';
