@@ -190,7 +190,7 @@ return [
         ],
 
         'frontend' => [
-            'avatar'                    => 'Avatar Location',
+            'avatar'                    => 'Ảnh đại diện lấy ở',
             'email'                     => 'Địa chỉ Email',
             'first_name'                => 'Tên',
             'last_name'                 => 'Họ',
@@ -199,9 +199,9 @@ return [
             'password_confirmation'     => 'Xác nhận mật khẩu',
             'phone'                     => 'Số điện thoại',
             'message'                   => 'Tin nhắn',
-            'new_password'              => 'New Password',
-            'new_password_confirmation' => 'New Password Confirmation',
-            'old_password'              => 'Old Password',
+            'new_password'              => 'Mật khẩu mới',
+            'new_password_confirmation' => 'Xác nhận mật khẩu mới',
+            'old_password'              => 'Mật khẩu cũ',
             'timezone'                  => 'Timezone',
             'language'                  => 'Ngôn ngữ',
         ],

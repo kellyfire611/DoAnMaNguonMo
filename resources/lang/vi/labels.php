@@ -143,19 +143,19 @@ return [
 
         'user' => [
             'passwords' => [
-                'change' => 'Change Password',
+                'change' => 'Đổi mật khẩu',
             ],
 
             'profile' => [
-                'avatar'             => 'Avatar',
-                'created_at'         => 'Created At',
-                'edit_information'   => 'Edit Information',
+                'avatar'             => 'Ảnh đại diện',
+                'created_at'         => 'Ngày tạo',
+                'edit_information'   => 'Hiệu chỉnh Thông tin',
                 'email'              => 'E-mail',
-                'last_updated'       => 'Last Updated',
-                'name'               => 'Name',
-                'first_name'         => 'First Name',
-                'last_name'          => 'Last Name',
-                'update_information' => 'Update Information',
+                'last_updated'       => 'Ngày cập nhật',
+                'name'               => 'Tên',
+                'first_name'         => 'Tên',
+                'last_name'          => 'Họ',
+                'update_information' => 'Cập nhật Thông tin',
             ],
         ],
 
