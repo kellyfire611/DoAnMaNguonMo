@@ -40,6 +40,7 @@
                                 <select name="kieu" class="form-control">
                                     <option value="horizontal-banner-top">Banner top nằm ngang</option>
                                     <option value="vertical-banner-sidebar">Banner đứng chạy dọc 2 bên</option>
+                                    <option value="horizontal-banner-home">Banner nằm ngang trên trang chủ</option>
                                 </select>
                             </div><!--col-->
                         </div><!--form-group-->

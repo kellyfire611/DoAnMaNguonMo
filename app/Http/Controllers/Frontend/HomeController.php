@@ -10,6 +10,7 @@ use App\Models\DiaChi;
 use App\Models\TinhThanh;
 use App\Models\QuanHuyen;
 use App\Models\XaPhuong;
+use App\Models\QuangCao;
 use App\Http\Controllers\Controller;
 use App\Repositories\Backend\DiaDiemRepository;
 
@@ -40,10 +41,12 @@ class HomeController extends Controller
     {
         $diadiems = DiaDiem::take(12)->get();
         $topmonans = DiaDiem::all();
+        $quangcaos = QuangCao::all();
 
         return view('frontend.index')
             ->with('diadiems', $diadiems)
-            ->with('topmonans', $topmonans);
+            ->with('topmonans', $topmonans)
+            ->with('quangcaos', $quangcaos);
     }
 
     public function search(Request $request)

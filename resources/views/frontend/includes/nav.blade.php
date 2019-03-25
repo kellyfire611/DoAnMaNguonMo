@@ -25,10 +25,8 @@
                 @else
                     <li class="menu-has-children">
                         <a href="#">{{ $logged_in_user->name }}</a>
-                        <ul>
-                            @can('view backend')
-                                <li><a href="{{ route('admin.dashboard') }}" class="dropdown-item">Quản trị</a></li>
-                            @endcan
+                        <ul>                            
+                            <li><a href="{{ route('admin.dashboard') }}" class="dropdown-item">Quản trị</a></li>
 
                             <li><a href="{{ route('frontend.user.account') }}" class="dropdown-item {{ active_class(Active::checkRoute('frontend.user.account')) }}">Trang cá nhân</a></li>
                             <li><a href="{{ route('frontend.auth.logout') }}" class="dropdown-item">Đăng xuất</a></li>

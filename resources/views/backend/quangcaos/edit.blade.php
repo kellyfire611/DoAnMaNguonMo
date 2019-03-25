@@ -7,14 +7,14 @@
 @endsection
 
 @section('content')
-{{ html()->modelForm($quangcao, 'PATCH', route('admin.quangcaos.update', $quangcao->_id))->class('form-horizontal quill-form')->open() }}
+{{ html()->modelForm($quangcao, 'PATCH', route('admin.quangcaos.update', $quangcao->_id))->class('form-horizontal quill-form')->acceptsFiles()->open() }}
     <div class="card">
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-5">
                     <h4 class="card-title mb-0">
                         Quản lý Trang
-                        <small class="text-muted">@lang('labels.backend.quangcaos.edit')</small>
+                        <small class="text-muted">Sửa Quảng cáo</small>
                     </h4>
                 </div><!--col-->
             </div><!--row-->
@@ -38,8 +38,9 @@
                             {{ html()->label('Kiểu hiển thị')->class('col-md-2 form-control-label')->for('kieu') }}
                             <div class="col-md-10">
                                 <select name="kieu" class="form-control">
-                                    <option value="horizontal-banner-top">Banner top nằm ngang</option>
-                                    <option value="vertical-banner-sidebar">Banner đứng chạy dọc 2 bên</option>
+                                    <option value="horizontal-banner-top" {{ $quangcao->kieu == 'horizontal-banner-top' ? 'selected' : '' }}>Banner top nằm ngang</option>
+                                    <option value="vertical-banner-sidebar" {{ $quangcao->kieu == 'vertical-banner-sidebar' ? 'selected' : '' }}>Banner đứng chạy dọc 2 bên</option>
+                                    <option value="horizontal-banner-home" {{ $quangcao->kieu == 'horizontal-banner-home' ? 'selected' : '' }}>Banner nằm ngang trên trang chủ</option>
                                 </select>
                             </div><!--col-->
                         </div><!--form-group-->

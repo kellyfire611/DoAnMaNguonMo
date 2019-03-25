@@ -3,6 +3,24 @@
 @section('title', app_name() . ' | ' . __('navs.general.home'))
 
 @section('content')
+<!-- start banner ads top -->
+<section class="horizontal-banner-top" id="horizontal-banner-top">
+    <div class="container">
+        <div class="row fullscreen d-flex align-items-center justify-content-start">
+			<div class="owl-carousel owl-theme" id="horizontal-banner-top-slider">
+				@foreach($quangcaos->where('kieu', 'horizontal-banner-top') as $quangcao)
+				<div>
+					<a href="{{ $quangcao->url }}">
+						<img src="{{ asset('storage/'.$quangcao->anhdaidien) }}" class="img-fluid"/>
+					</a>
+				</div>
+				@endforeach										
+			</div>
+        </div>
+    </div>
+</section>
+<!-- End banner ads top -->
+
 <!-- start banner Area -->
 <section class="banner-area relative" id="home">
     <div class="container">
@@ -47,6 +65,27 @@
 <!-- Start top-dish Area -->
 <section class="top-dish-area section-gap" id="dish">
 				<div class="container">
+				<?php
+				$vertical_ads = $quangcaos->where('kieu', 'vertical-banner-sidebar')->take(2);
+				?>
+				<div class="clearfix">
+				@foreach($vertical_ads as $quangcao)
+					@if($quangcao == $vertical_ads->first())
+					<div class="vertical-banner-sidebar-left">
+						<a href="{{ $quangcao->url }}">
+							<img src="{{ asset('storage/'.$quangcao->anhdaidien) }}" class="img-fluid"/>
+						</a>
+					</div>
+					@else
+					<div class="vertical-banner-sidebar-right">
+						<a href="{{ $quangcao->url }}">
+							<img src="{{ asset('storage/'.$quangcao->anhdaidien) }}" class="img-fluid"/>
+						</a>
+					</div>
+					@endif
+				@endforeach
+	
+				</div>
 					<div class="row d-flex justify-content-center">
 						<div class="menu-content col-lg-8">
 							<div class="title text-center">
@@ -75,6 +114,22 @@
 				</div>	
 			</section>
 			<!-- End top-dish Area -->
+
+			<!-- start banner ads top -->
+			<section class="horizontal-banner-home" id="horizontal-banner-home">
+				<div class="container">
+					<div class="row fullscreen d-flex align-items-center justify-content-start owl-carousel owl-theme" id="horizontal-banner-home-slider">
+						@foreach($quangcaos->where('kieu', 'horizontal-banner-home') as $quangcao)
+						<div class="col">
+							<a href="{{ $quangcao->url }}">
+								<img src="{{ asset('storage/'.$quangcao->anhdaidien) }}" class="img-fluid"/>
+							</a>
+						</div>
+						@endforeach
+					</div>
+				</div>
+			</section>
+			<!-- End banner ads top -->
 			
 			<!-- Start video Area -->
 			<section class="video-area">
@@ -263,4 +318,42 @@
 				</div>
 			</section>
 			<!-- End Contact Area -->	
+
+<div>
+	
+</div>
+
 @endsection
+
+@push('after-scripts')
+<script>
+	$(document).ready(function(){
+		
+
+		$('#horizontal-banner-top-slider').owlCarousel({
+			items:1,
+			loop:true,
+			dots: false,
+			nav:false,
+			autoplay:true,
+			autoplayTimeout: 3000,
+			//navText: ["<span class='lnr lnr-arrow-up'></span>", "<span class='lnr lnr-arrow-down'></span>"],        
+				responsive: {
+				0: {
+					items: 1
+				},
+				480: {
+					items: 1,
+				},
+				768: {
+					items: 1,
+				},
+				900: {
+					items: 1,
+				}
+
+			}
+		});
+	});
+</script>
+@endpush

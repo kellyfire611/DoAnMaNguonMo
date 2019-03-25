@@ -120,3 +120,29 @@ footer p {
     background-color: #442c21;
     text-align: center;
 }
+
+.vertical-banner-sidebar-left, .vertical-banner-sidebar-right {
+    width:200px;
+    background:red;
+    color:#fff;
+    vertical-align:middle;
+    text-align:center;
+    position: fixed;
+    z-index: 999;
+}
+
+.vertical-banner-sidebar-left {
+    background:red;
+    left: 0px;
+    bottom: 0px;
+}
+.vertical-banner-sidebar-right {
+    background:blue;
+    right: 0px;
+    bottom: 0px;
+}
+
+.vertical-banner-sidebar-left a img, .vertical-banner-sidebar-right a img {
+    height: 400px;
+    width: 200px;
+}
