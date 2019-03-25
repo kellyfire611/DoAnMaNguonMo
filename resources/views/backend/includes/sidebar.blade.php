@@ -69,8 +69,15 @@
                         </a>
                     </li>
                 </ul>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link {{ active_class(Active::checkUriPattern('admin/quangcaos')) }}" href="{{ route('admin.quangcaos.index') }}">
+                            Danh mục Quảng cáo
+                        </a>
+                    </li>
+                </ul>
             </li>
-            
+
             <!-- Menu Địa điểm -->
             <li class="divider"></li>
 

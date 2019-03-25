@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\TinhThanhController;
 use App\Http\Controllers\Backend\TimKiemController;
 use App\Http\Controllers\Backend\DiaDiemController;
 use App\Http\Controllers\Backend\PageController;
+use App\Http\Controllers\Backend\QuangCaoController;
 
 /*
  * All route names are prefixed with 'admin.'.
@@ -20,6 +21,15 @@ Route::get('pages/{pages}/', [PageController::class, 'show'])->name('pages.show'
 Route::get('pages/{pages}/edit', [PageController::class, 'edit'])->name('pages.edit');
 Route::patch('pages/{pages}/', [PageController::class, 'update'])->name('pages.update');
 Route::delete('pages/{pages}/', [PageController::class, 'destroy'])->name('pages.destroy');
+
+// Route QuangCao
+Route::get('quangcaos', [QuangCaoController::class, 'index'])->name('quangcaos.index');
+Route::get('quangcaos/create', [QuangCaoController::class, 'create'])->name('quangcaos.create');
+Route::post('quangcaos', [QuangCaoController::class, 'store'])->name('quangcaos.store');
+Route::get('quangcaos/{quangcaos}/', [QuangCaoController::class, 'show'])->name('quangcaos.show');
+Route::get('quangcaos/{quangcaos}/edit', [QuangCaoController::class, 'edit'])->name('quangcaos.edit');
+Route::patch('quangcaos/{quangcaos}/', [QuangCaoController::class, 'update'])->name('quangcaos.update');
+Route::delete('quangcaos/{quangcaos}/', [QuangCaoController::class, 'destroy'])->name('quangcaos.destroy');
 
 // Route Tỉnh thành
 Route::get('tinhthanh', [TinhThanhController::class, 'index'])->name('tinhthanh.index');

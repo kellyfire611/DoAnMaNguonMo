@@ -33,6 +33,32 @@ Breadcrumbs::for('admin.pages.edit', function ($trail, $id) {
     $trail->push('Sửa Trang', route('admin.pages.edit', $id));
 });
 
+// Quảng cáo
+Breadcrumbs::for('admin.quangcaos.index', function ($trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Quảng cáo', route('admin.quangcaos.index'));
+});
+
+Breadcrumbs::for('admin.quangcaos.deleted', function ($trail) {
+    $trail->parent('admin.quangcaos.index');
+    $trail->push('Quảng cáo đã xóa', route('admin.quangcaos.deleted'));
+});
+
+Breadcrumbs::for('admin.quangcaos.create', function ($trail) {
+    $trail->parent('admin.quangcaos.index');
+    $trail->push('Thêm mới Quảng cáo', route('admin.quangcaos.create'));
+});
+
+Breadcrumbs::for('admin.quangcaos.show', function ($trail, $id) {
+    $trail->parent('admin.quangcaos.index');
+    $trail->push('Xem Quảng cáo', route('admin.quangcaos.show', $id));
+});
+
+Breadcrumbs::for('admin.quangcaos.edit', function ($trail, $id) {
+    $trail->parent('admin.quangcaos.index');
+    $trail->push('Sửa Quảng cáo', route('admin.quangcaos.edit', $id));
+});
+
 // Tỉnh thành
 Breadcrumbs::for('admin.tinhthanh.index', function ($trail) {
     $trail->parent('admin.dashboard');
