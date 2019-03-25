@@ -22,7 +22,7 @@
                 <input type="text" name="dichvu_motangan[]" id="dichvu-motangan-<%= index %>" placeholder="Mô tả ngắn" class="form-control" value="<%= motangan %>" />
             </div><!--col-->
             <div class="col">
-                <input type="text" name="dichvu_gia[]" id="dichvu-gia-<%= index %>" placeholder="Giá" cleave-auto-unmask="true" class="form-control input-element-number" value="<%= gia %>" />
+                <input type="number" name="dichvu_gia[]" id="dichvu-gia-<%= index %>" placeholder="Giá" cleave-auto-unmask="true" class="form-control input-element-number" value="<%= gia %>" />
             </div><!--col-->
             <div class="col col-md-auto">
                 <button type="button" name="remove" id="<%= index %>" class="btn btn-danger btn_remove">X</button>

@@ -125,10 +125,17 @@ class DiaDiemController extends Controller
             
             $file->storeAs('public/' . $upload_dir, $fileName);
             $inputs['anhdaidien'] = $filePath;
+            
+            // dd($file->getPathName());
+            $temp = file_get_contents($file->getPathName());
+            $blob = base64_encode($temp);
+            $inputs['anhdaidien_blob'] = $blob;
+            // dd($file, $blob);
         }
         else
         {
             $inputs['anhdaidien'] = null;
+            $inputs['anhdaidien_blob'] = null;
         }
 
         // Dịch vụ
@@ -270,6 +277,10 @@ class DiaDiemController extends Controller
             
             $file->storeAs('public/' . $upload_dir, $fileName);
             $inputs['anhdaidien'] = $filePath;
+
+            $temp = file_get_contents($file->getPathName());
+            $blob = base64_encode($temp);
+            $inputs['anhdaidien_blob'] = $blob;
         }
         else
         {

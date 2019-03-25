@@ -108,6 +108,7 @@ class DiaDiemRepository extends BaseRepository
             'tendiadiem' => $data['tendiadiem'],
             'motangan' => $data['motangan'],
             'anhdaidien' => $data['anhdaidien'],
+            'anhdaidien_blob' => $data['anhdaidien_blob'],
             'gioithieu' => $data['gioithieu'],
             'tukhoa' => $data['tukhoa'],
             'dienthoai' => $data['dienthoai'],

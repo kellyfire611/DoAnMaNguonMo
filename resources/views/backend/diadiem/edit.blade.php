@@ -216,7 +216,7 @@
                                 <input type="text" name="dichvu_motangan[]" id="dichvu-motangan-{{ $i }}" placeholder="Mô tả ngắn" class="form-control" value="{{ $dichvu->motangan }}" />
                             </div><!--col-->
                             <div class="col">
-                                <input type="text" name="dichvu_gia[]" id="dichvu-gia-{{ $i }}" placeholder="Giá" cleave-auto-unmask="true" class="form-control input-element-number number" value="{{ $dichvu->gia }}" />
+                                <input type="number" name="dichvu_gia[]" id="dichvu-gia-{{ $i }}" placeholder="Giá" cleave-auto-unmask="true" class="form-control input-element-number number" value="{{ $dichvu->gia }}" />
                             </div><!--col-->
                             <div class="col col-md-auto">
                                 <button type="button" name="add" id="add" class="btn btn-success">+</button>
@@ -257,7 +257,7 @@
                                 <input type="text" name="dichvu_motangan[]" id="dichvu-motangan-{{ $i }}" placeholder="Mô tả ngắn" class="form-control" value="{{ $dichvu->motangan }}" />
                             </div><!--col-->
                             <div class="col">
-                                <input type="text" name="dichvu_gia[]" id="dichvu-gia-{{ $i }}" placeholder="Giá" cleave-auto-unmask="true" class="form-control input-element-number number" value="{{ $dichvu->gia }}" />
+                                <input type="number" name="dichvu_gia[]" id="dichvu-gia-{{ $i }}" placeholder="Giá" cleave-auto-unmask="true" class="form-control input-element-number number" value="{{ $dichvu->gia }}" />
                             </div><!--col-->
                             <div class="col col-md-auto">
                                 <button type="button" name="remove" id="{{ $i }}" class="btn btn-danger btn_remove">X</button>

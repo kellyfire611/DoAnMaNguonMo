@@ -197,7 +197,7 @@
                                         <input type="text" name="dichvu_motangan[]" id="dichvu-motangan-0" placeholder="Mô tả ngắn" class="form-control" />
                                     </div><!--col-->
                                     <div class="col">
-                                        <input type="text" name="dichvu_gia[]" id="dichvu-gia-0" placeholder="Giá" cleave-auto-unmask="true" class="form-control input-element-number number" />
+                                        <input type="number" name="dichvu_gia[]" id="dichvu-gia-0" placeholder="Giá" cleave-auto-unmask="true" class="form-control input-element-number number" />
                                     </div><!--col-->
                                     <div class="col col-md-auto">
                                         <button type="button" name="add" id="add" class="btn btn-success">+</button>
