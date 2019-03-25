@@ -59,8 +59,8 @@ return [
             'confirmation' => [
                 'already_confirmed' => 'Your account is already confirmed.',
                 'confirm'           => 'Confirm your account!',
-                'created_confirm'   => 'Your account was successfully created. We have sent you an e-mail to confirm your account.',
-                'created_pending'   => 'Your account was successfully created and is pending approval. An e-mail will be sent when your account is approved.',
+                'created_confirm'   => 'Tài khoản của bạn đã được khởi tạo thành công. FEEDY đã gởi email xác nhận vào email bạn đăng ký.',
+                'created_pending'   => 'Tài khoản của bạn đã được khởi tạo thành công và đang trong quá trình chờ xác nhận. FEEDY sẽ gởi email cho bạn khi tài khoản của bạn được cấp phép.',
                 'mismatch'          => 'Your confirmation code does not match.',
                 'not_found'         => 'That confirmation code does not exist.',
                 'pending'            => 'Your account is currently pending approval.',
