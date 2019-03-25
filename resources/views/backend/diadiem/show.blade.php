@@ -22,7 +22,7 @@
             <div class="table-responsive">
                 <table class="table table-hover">
                     <tr>
-                        <th>Tên địa điểm</th>
+                        <th style="width: 20%;">Tên địa điểm</th>
                         <td>{{ $diadiem->tendiadiem }}</td>
                     </tr>
                     <tr>
@@ -31,7 +31,9 @@
                     </tr>
                     <tr>
                         <th>Ảnh đại diện</th>
-                        <td><img src="{{ asset('storage/'.$diadiem->anhdaidien) }}" /></td>
+                        <td>
+                            <img src="{{ $anhdaidien_base64 }}" class="img-fluid" style="width:300px;" />
+                        </td>
                     </tr>
                     <tr>
                         <th>Từ khóa</th>

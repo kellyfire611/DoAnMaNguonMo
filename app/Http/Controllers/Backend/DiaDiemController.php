@@ -180,8 +180,22 @@ class DiaDiemController extends Controller
     public function show(ManageDiaDiemRequest $request, $_id)
     {
         $DiaDiem = DiaDiem::find($_id);
+
+        $path = $DiaDiem->anhdaidien;
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $data = $DiaDiem->anhdaidien_blob;
+        if(empty($data))
+        {
+            $base64 = asset('storage/'.$path);
+        }
+        else
+        {
+            $base64 = 'data:image/' . $type . ';base64,' . $data;
+        }
+
         return view('backend.diadiem.show')
-            ->with('diadiem', $DiaDiem);
+            ->with('diadiem', $DiaDiem)
+            ->with('anhdaidien_base64', $base64);
     }
 
     /**
