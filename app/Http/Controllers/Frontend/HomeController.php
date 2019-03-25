@@ -78,6 +78,7 @@ class HomeController extends Controller
         }
         $quangcaos = QuangCao::all();
 
+        $diadiems = $diadiems->sortByDesc('diemtrungbinh');
         return view('frontend.index')
             ->with('diadiems', $diadiems)
             ->with('topmonans', $topmonans)

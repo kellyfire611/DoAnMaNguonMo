@@ -129,6 +129,7 @@ footer p {
     text-align:center;
     position: fixed;
     z-index: 999;
+    display: none;
 }
 
 .vertical-banner-sidebar-left {
@@ -145,4 +146,10 @@ footer p {
 .vertical-banner-sidebar-left a img, .vertical-banner-sidebar-right a img {
     height: 400px;
     width: 200px;
+}
+
+@media (min-width: 1550px) {
+    .vertical-banner-sidebar-left, .vertical-banner-sidebar-right {
+        display: block !important;
+    }
 }
