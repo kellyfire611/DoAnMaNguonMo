@@ -9,11 +9,6 @@
                     <i class="nav-icon icon-speedometer"></i> @lang('menus.backend.sidebar.dashboard')
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link {{ active_class(Active::checkUriPattern('admin/dashboard')) }}" href="{{ route('admin.timkiem') }}">
-                    <i class="nav-icon icon-speedometer"></i> Tìm Kiếm thông tin
-                </a>
-            </li>
             <li class="nav-title">
                 @lang('menus.backend.sidebar.system')
             </li>
