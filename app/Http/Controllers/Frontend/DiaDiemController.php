@@ -48,6 +48,20 @@ class DiaDiemController extends Controller
     public function show(ManageDiaDiemRequest $request, $_id)
     {
         $DiaDiem = DiaDiem::find($_id);
+        $diem = 0;
+        $sumDiem = 0;
+        foreach($DiaDiem->danhgias()->get() as $key=>$value)
+        {
+            $sumDiem += empty($value->diem) ? 0 : $value->diem;
+        }
+        if($DiaDiem->danhgias()->count() <= 0)
+        {
+            $DiaDiem->diemtrungbinh = 0;
+        }
+        else
+        {
+            $DiaDiem->diemtrungbinh = $sumDiem / $DiaDiem->danhgias()->count();
+        }
         return view('frontend.diadiem.show')
             ->with('diadiem', $DiaDiem);
     }

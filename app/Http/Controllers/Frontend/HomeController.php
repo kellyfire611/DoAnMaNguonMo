@@ -40,7 +40,42 @@ class HomeController extends Controller
     public function index()
     {
         $diadiems = DiaDiem::take(12)->get();
+
+        foreach($diadiems as $diadiem)
+        {
+            $diem = 0;
+            $sumDiem = 0;
+            foreach($diadiem->danhgias()->get() as $key=>$value)
+            {
+                $sumDiem += empty($value->diem) ? 0 : $value->diem;
+            }
+            if($diadiem->danhgias()->count() <= 0)
+            {
+                $diadiem->diemtrungbinh = 0;
+            }
+            else
+            {
+                $diadiem->diemtrungbinh = $sumDiem / $diadiem->danhgias()->count();
+            }
+        }
         $topmonans = DiaDiem::all();
+        foreach($topmonans as $diadiem)
+        {
+            $diem = 0;
+            $sumDiem = 0;
+            foreach($diadiem->danhgias()->get() as $key=>$value)
+            {
+                $sumDiem += empty($value->diem) ? 0 : $value->diem;
+            }
+            if($diadiem->danhgias()->count() <= 0)
+            {
+                $diadiem->diemtrungbinh = 0;
+            }
+            else
+            {
+                $diadiem->diemtrungbinh = $sumDiem / $diadiem->danhgias()->count();
+            }
+        }
         $quangcaos = QuangCao::all();
 
         return view('frontend.index')

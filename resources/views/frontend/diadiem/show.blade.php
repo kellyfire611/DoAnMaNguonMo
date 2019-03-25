@@ -38,6 +38,9 @@
             <li>Email: {{ $diadiem->email }}</li>
             <li>Điện thoại: {{ $diadiem->dienthoai }}</li>
             <li>Hoạt động từ: {{ $diadiem->giomocua }}-{{ $diadiem->giodongcua }}</li>
+            <li>
+                <input type="number" class="rating" value="{{ $diadiem->diemtrungbinh }}" data-step="1" data-size="xs" data-readonly="true" data-theme="krajee-svg" data-show-clear="false" data-show-caption="true" data-language="vi" />
+            </li>
         </ul>
         {!! $diadiem->gioithieu !!}
     </div>
